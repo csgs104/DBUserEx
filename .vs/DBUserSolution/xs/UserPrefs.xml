@@ -1,4 +1,4 @@
-﻿<Properties StartupConfiguration="{483B4DB0-2E89-4E5B-9586-6C8998967A71}|Default">
+﻿<Properties GitUserInfo="UsingGIT" StartupConfiguration="{483B4DB0-2E89-4E5B-9586-6C8998967A71}|Default">
   <MonoDevelop.Ide.ItemProperties.PasswordChecker FirstBuild="True" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

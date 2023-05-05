@@ -13,9 +13,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/stefanocasagrande/Desktop/DBUserEx/PasswordChain/PasswordChecker.csproj",
-      "projectName": "PasswordChecker",
-      "projectPath": "/Users/stefanocasagrande/Desktop/DBUserEx/PasswordChain/PasswordChecker.csproj",
+      "projectUniqueName": "/Users/stefanocasagrande/Desktop/DBUserEx/PasswordChain/PasswordCheckerLibrary.csproj",
+      "projectName": "PasswordCheckerLibrary",
+      "projectPath": "/Users/stefanocasagrande/Desktop/DBUserEx/PasswordChain/PasswordCheckerLibrary.csproj",
       "packagesPath": "/Users/stefanocasagrande/.nuget/packages/",
       "outputPath": "/Users/stefanocasagrande/Desktop/DBUserEx/PasswordChain/obj/",
       "projectStyle": "PackageReference",

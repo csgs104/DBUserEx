@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PasswordChecker;
+namespace PasswordCheckerLibrary;
 
 public abstract class PasswordChecker : IPasswordChecker
 {
@@ -23,4 +23,3 @@ public abstract class PasswordChecker : IPasswordChecker
 
     public abstract (bool, string) PasswordCheck(string str);
 }
-

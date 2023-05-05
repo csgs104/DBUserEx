@@ -1,7 +1,7 @@
 ﻿using System;
-using PasswordChecker.PasswordCheckers;
+using PasswordCheckerLibrary.PasswordCheckers;
 
-namespace PasswordChecker
+namespace PasswordCheckerLibrary
 {
 	public class PasswordCheckerChain
 	{

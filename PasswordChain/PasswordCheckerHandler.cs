@@ -1,5 +1,6 @@
 ﻿using System;
-namespace PasswordChecker;
+
+namespace PasswordCheckerLibrary;
 
 public static class PasswordCheckerHandler
 {

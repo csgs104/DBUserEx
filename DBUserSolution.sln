@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBUserApp", "DBUserApp\DBUs
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBUserLibrary", "DBUserLibrary\DBUserLibrary.csproj", "{522F9347-B073-4FD0-B8CB-94F1288FF23A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PasswordChecker", "PasswordChain\PasswordChecker.csproj", "{22DD3E88-C037-4AEE-8888-2A6E43D89C53}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PasswordCheckerLibrary", "PasswordChain\PasswordCheckerLibrary.csproj", "{22DD3E88-C037-4AEE-8888-2A6E43D89C53}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

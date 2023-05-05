@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-using PasswordChecker;
+using PasswordCheckerLibrary;
 
-namespace PasswordChecker.PasswordCheckers;
+namespace PasswordCheckerLibrary.PasswordCheckers;
 
 public class SpecialCharacterChecker : PasswordChecker
 {
@@ -20,4 +20,3 @@ public class SpecialCharacterChecker : PasswordChecker
         return (false, "The password must contain at least 1 special character.");
     }
 }
-

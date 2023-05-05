@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "I38clm/b2GUunzGhuNAaQ2kjjT+5ABSCB5wmjqPsfHwcjcWM4XQQB6JtjIYr9xLYS5cHQ50R/RsoEa6WWMBFPA==",
+  "dgSpecHash": "lRjdVfSwPSM+zwa8xE0/RAAIPnMyuvYwnmokM+Rz4xm3AfvHFM3cHoI1uekjnpXVSUa78p7PszqjsUes/RrPGw==",
   "success": true,
-  "projectFilePath": "/Users/stefanocasagrande/Desktop/DBUserEx/PasswordChain/PasswordChecker.csproj",
+  "projectFilePath": "/Users/stefanocasagrande/Desktop/DBUserEx/PasswordChain/PasswordCheckerLibrary.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

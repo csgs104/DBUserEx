@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-using PasswordChecker;
+using PasswordCheckerLibrary;
 
-namespace PasswordChecker.PasswordCheckers;
+namespace PasswordCheckerLibrary.PasswordCheckers;
 
 public class CapitalLetterChecker : PasswordChecker
 {

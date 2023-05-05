@@ -1,28 +1,38 @@
 ﻿using System;
-using DBUserLibrary.Entities.Interfaces;
+using DBUserLibrary.Entities.Abstract;
 
 namespace DBUserLibrary.Entities.Classes;
 
-public class User : IEntity
-{ 
-    public int Id { get; set; }
-    public string Email { get; set; } = null!;
-    public string Password { get; set; } = null!;
-    public DateTime Date { get; set; }
+public class User : Entity
+{
+    private readonly string _email;
+    private readonly string _password;
+    private readonly DateTime _date;
 
-    public User() 
-    { }
+    public string Email { get => _email; }
+    public string Password { get => _password; }
+    public DateTime Date { get => _date; }
 
-    public User(int id, string email, string password, DateTime date)
+    public User(int id, string email, string password, DateTime date) : base(id)
     {
-        Id = id;
-        Email = email;
-        Password = password;
-        Date = date;
+        _email = email;
+        _password = password;
+        _date = date;
     }
 
-    public override string ToString()
-        => $"Id:{Id}, User:{Email}, Password:{Password}, Date:{Date}";
+    public User(string email, string password, DateTime date) : base()
+    {
+        _email = email;
+        _password = password;
+        _date = date;
+    }
 
-    public string ToCommaSeparatedString() => $"{Id},{Email},{Password},{Date}";
+    public User() : this(string.Empty, string.Empty, default)
+    { }
+
+    public override string ToString()
+        => $"{base.ToString()}, User:{Email}, Password:{Password}, Date:{Date}";
+
+    public override string ToCommaSeparatedString() 
+	    => $"{base.ToCommaSeparatedString()},{Email},{Password},{Date}";
 }

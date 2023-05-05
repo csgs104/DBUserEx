@@ -9,7 +9,7 @@ public class CapitalLetterChecker : PasswordChecker
 {
     public override (bool, string) PasswordCheck(string str)
     {
-        if (Regex.Match(str, "(?=.*?[A - Z])").Success)
+        if (Regex.IsMatch(str, "(?=.*?[A - Z])", RegexOptions.None))
         {
             if (_successor is not null)
             {

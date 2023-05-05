@@ -9,7 +9,7 @@ public class SevenCharactersChecker : PasswordChecker
 {
     public override (bool, string) PasswordCheck(string str)
     {
-        if (Regex.Match(str, ".{7,}").Success)
+        if (Regex.IsMatch(str, ".{7,}", RegexOptions.None))
         {
             if (_successor is not null)
             {

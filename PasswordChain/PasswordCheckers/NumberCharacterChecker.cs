@@ -9,7 +9,7 @@ public class NumberCharacterChecker : PasswordChecker
 {
     public override (bool, string) PasswordCheck(string str)
     {
-        if (Regex.Match(str, "(?=.*?[0 - 9])").Success)
+        if (Regex.IsMatch(str, "(?=.*?[0 - 9])", RegexOptions.None))
         {
             if (_successor is not null)
             {

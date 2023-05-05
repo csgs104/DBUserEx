@@ -12,19 +12,19 @@
     <None Remove="Entities\Interfaces\" />
     <None Remove="Entities\Classes\" />
     <None Remove="Repositories\Classes\" />
-    <None Remove="Repositories\Interfaces\" />
-    <None Remove="DB\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\" />
     <Folder Include="Repositories\" />
-    <Folder Include="Entities\Interfaces\" />
+    <Folder Include="Entities\Abstract\" />
     <Folder Include="Entities\Classes\" />
     <Folder Include="Repositories\Classes\" />
-    <Folder Include="Repositories\Interfaces\" />
-    <Folder Include="DB\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EmailCheckerLibrary\EmailCheckerLibrary.csproj" />
+    <ProjectReference Include="..\PasswordChain\PasswordCheckerLibrary.csproj" />
   </ItemGroup>
 </Project>

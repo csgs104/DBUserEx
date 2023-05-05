@@ -2,15 +2,15 @@
 using System.Data;
 using Microsoft.Data.SqlClient;
 
-namespace DBUserLibrary.Repositories.Classes;
+namespace DBUserLibrary.Repositories.Abstract;
 
-public abstract class ARepository
+public abstract class BaseRepository
 {
     private readonly string _connection;
 
     public string Connection { get => _connection; }
 
-    public ARepository(string connection)
+    public BaseRepository(string connection)
 	{
         _connection = connection;
 	}
@@ -23,13 +23,13 @@ public abstract class ARepository
             using var cmd = new SqlCommand(command, cn);
             var sqlParameters = parameters.Select(x => new SqlParameter(x.Key, x.Value)).ToArray();
             cmd.Parameters.AddRange(sqlParameters);
-
             cn.Open();
+
             return (true, cmd.ExecuteNonQuery());
         }
         catch (SqlException ex)
         {
-            return (false, 0);
+            return (false, default);
         }
     }
 }

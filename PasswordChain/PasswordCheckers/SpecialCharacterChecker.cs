@@ -9,7 +9,7 @@ public class SpecialCharacterChecker : PasswordChecker
 {
     public override (bool, string) PasswordCheck(string str)
     {
-        if (Regex.Match(str, "(?=.*?[#?!@$%^&*-])").Success)
+        if (Regex.IsMatch(str, "(?=.*?[#?!@$%^&*-])", RegexOptions.None))
         {
             if (_successor is not null)
             {

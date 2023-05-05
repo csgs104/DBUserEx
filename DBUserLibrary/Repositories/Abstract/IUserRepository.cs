@@ -1,7 +1,7 @@
 ﻿using System;
 using DBUserLibrary.Entities.Classes;
 
-namespace DBUserLibrary.Repositories.Interfaces;
+namespace DBUserLibrary.Repositories.Abstract;
 
 public interface IUserRepository
 {

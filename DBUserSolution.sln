@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBUserLibrary", "DBUserLibr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PasswordCheckerLibrary", "PasswordChain\PasswordCheckerLibrary.csproj", "{22DD3E88-C037-4AEE-8888-2A6E43D89C53}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailCheckerLibrary", "EmailCheckerLibrary\EmailCheckerLibrary.csproj", "{B72BF4B7-C6C4-4556-B8CD-2E8CF8740F78}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{22DD3E88-C037-4AEE-8888-2A6E43D89C53}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{22DD3E88-C037-4AEE-8888-2A6E43D89C53}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{22DD3E88-C037-4AEE-8888-2A6E43D89C53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B72BF4B7-C6C4-4556-B8CD-2E8CF8740F78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B72BF4B7-C6C4-4556-B8CD-2E8CF8740F78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B72BF4B7-C6C4-4556-B8CD-2E8CF8740F78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B72BF4B7-C6C4-4556-B8CD-2E8CF8740F78}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

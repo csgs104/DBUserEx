@@ -9,14 +9,14 @@ public class SevenCharactersChecker : PasswordChecker
 {
     public override (bool, string) PasswordCheck(string str)
     {
-        if (Regex.Match(str, ".{8,200}").Success)
+        if (Regex.Match(str, ".{7,}").Success)
         {
             if (_successor is not null)
             {
                 return _successor.PasswordCheck(str);
             }
-            return (true, "Two Numbers");
+            return (true, string.Empty);
         }
-        return (false, "Not Two Numbers");
+        return (false, "The password must contain at least 7 characters.");
     }
 }

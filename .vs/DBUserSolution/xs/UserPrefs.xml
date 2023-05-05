@@ -1,0 +1,36 @@
+﻿<Properties StartupConfiguration="{483B4DB0-2E89-4E5B-9586-6C8998967A71}|Default">
+  <MonoDevelop.Ide.ItemProperties.PasswordChecker FirstBuild="True" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.ItemProperties.DBUserLibrary FirstBuild="True" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.DBUserApp PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="PasswordChain/Class1.cs">
+    <Files>
+      <File FileName="DBUserLibrary/Repositories/PersonRepository.cs" Line="58" Column="27" />
+      <File FileName="DBUserLibrary/Repositories/Interfaces/IPersonRepository.cs" Line="10" Column="2" />
+      <File FileName="DBUserLibrary/Repositories/Classes/ARepository.cs" Line="26" Column="1" />
+      <File FileName="DBUserLibrary/DB/Initialization.cs" Line="39" Column="64" />
+      <File FileName="PasswordChain/Class1.cs" Line="15" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="DBUserSolution" expanded="True">
+            <Node name="DBUserApp" expanded="True">
+              <Node name="Dependencies" expanded="True" />
+              <Node name="IoC" expanded="True" />
+            </Node>
+            <Node name="DBUserLibrary" expanded="True" />
+            <Node name="PasswordChain" expanded="True">
+              <Node name="Class1.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+</Properties>

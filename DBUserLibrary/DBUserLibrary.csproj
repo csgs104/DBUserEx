@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Models\" />
+    <None Remove="Repositories\" />
+    <None Remove="Entities\Interfaces\" />
+    <None Remove="Entities\Classes\" />
+    <None Remove="Repositories\Classes\" />
+    <None Remove="Repositories\Interfaces\" />
+    <None Remove="DB\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Entities\" />
+    <Folder Include="Repositories\" />
+    <Folder Include="Entities\Interfaces\" />
+    <Folder Include="Entities\Classes\" />
+    <Folder Include="Repositories\Classes\" />
+    <Folder Include="Repositories\Interfaces\" />
+    <Folder Include="DB\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.1" />
+  </ItemGroup>
+</Project>

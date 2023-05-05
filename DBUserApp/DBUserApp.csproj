@@ -12,8 +12,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="IoC\" />
+    <None Remove="Services\" />
+    <None Remove="Services\Abstract\" />
+    <None Remove="Services\Classes\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="IoC\" />
+    <Folder Include="Services\" />
+    <Folder Include="Services\Abstract\" />
+    <Folder Include="Services\Classes\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FileWriterLibrary\FileWriterLibrary.csproj" />
+    <ProjectReference Include="..\DBUserLibrary\DBUserLibrary.csproj" />
   </ItemGroup>
 </Project>

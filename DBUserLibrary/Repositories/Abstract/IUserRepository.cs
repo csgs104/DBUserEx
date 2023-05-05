@@ -5,6 +5,6 @@ namespace DBUserLibrary.Repositories.Abstract;
 
 public interface IUserRepository
 {
-    public (bool, User?) GetById(int id);
-    public (bool, User?) GetByEmail(string email);
+    public User GetById(int id, string password);
+    public User GetByEmail(string email, string password);
 }

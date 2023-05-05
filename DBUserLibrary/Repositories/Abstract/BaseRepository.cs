@@ -15,7 +15,7 @@ public abstract class BaseRepository
         _connection = connection;
 	}
 
-    protected (bool, int) TryExecute(string command, Dictionary<string, object> parameters)
+    protected bool TryExecute(string command, Dictionary<string, object> parameters)
     {
         try
         {
@@ -25,11 +25,11 @@ public abstract class BaseRepository
             cmd.Parameters.AddRange(sqlParameters);
             cn.Open();
 
-            return (true, cmd.ExecuteNonQuery());
+            return cmd.ExecuteNonQuery() > 0;
         }
         catch (SqlException ex)
         {
-            return (false, default);
+            return false;
         }
     }
 }

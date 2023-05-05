@@ -5,8 +5,8 @@ namespace DBUserLibrary.Entities.Classes;
 
 public class User : Entity
 {
-    private readonly string _email;
-    private readonly string _password;
+    private readonly string _email = null!;
+    private readonly string _password = null!;
     private readonly DateTime _date;
 
     public string Email { get => _email; }
@@ -31,8 +31,8 @@ public class User : Entity
     { }
 
     public override string ToString()
-        => $"{base.ToString()}, User:{Email}, Password:{Password}, Date:{Date}";
+        => $"{base.ToString()}, User:{Email}, Password:{Password}, Date:{Date.ToString("yyyy-MM-dd")}";
 
     public override string ToCommaSeparatedString() 
-	    => $"{base.ToCommaSeparatedString()},{Email},{Password},{Date}";
+	    => $"{base.ToCommaSeparatedString()},{Email},{Password},{Date.ToString("yyyy-MM-dd")}";
 }

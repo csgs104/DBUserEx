@@ -31,8 +31,8 @@ public class User : Entity
     { }
 
     public override string ToString()
-        => $"{base.ToString()}, User:{Email}, Password:{Password}, Date:{Date.ToString("yyyy-MM-dd")}";
+        => $"{base.ToString()}, Email:{Email}, Password:{Password}, Date:{Date.ToString("yyyy-MM-dd")}";
 
     public override string ToCommaSeparatedString() 
-	    => $"{base.ToCommaSeparatedString()},{Email},{Password},{Date.ToString("yyyy-MM-dd")}";
+	    => $"{base.ToCommaSeparatedString()}, {Email}, {Password}, {Date.ToString("yyyy-MM-dd")}";
 }

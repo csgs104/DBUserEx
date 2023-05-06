@@ -12,50 +12,75 @@ namespace DBUserApp.Services.Classes;
 
 public class UserService : IUserService
 {
-    private readonly UserRepository _userRepository;
+    private readonly IUserRepository _userRepository;
 
     public UserService(string connection)
     {
         _userRepository = new UserRepository(connection);
     }
 
-    private void Operation(int op) 
-    {
-        if (op > 0)
-        {
-            Console.WriteLine($"OK, row affected: {op}");
-        }
-        else
-        {
-            Console.WriteLine($"NOT OK, row affected: {op}.");
-        }
-    }
-
     public void Insert(User user)
     {
-        Console.Write($"{nameof(Insert)}: ");
-        Operation(_userRepository.Insert(user));
+        Console.Write($"Result: ");
+        try
+	    {
+            Console.WriteLine($"OK, {nameof(Insert)}_Id={_userRepository.Insert(user)}"); 
+	    }
+        catch (Exception ex) 
+	    {
+            Console.WriteLine($"Not OK, {ex.Message}");
+        }
     }
 
     public void Update(User user)
     {
-        Console.Write($"{nameof(Update)}: ");
-        Operation(_userRepository.Update(user));
+        Console.Write($"Result: ");
+        try
+        {
+            Console.WriteLine($"OK, {nameof(Update)}_Id={_userRepository.Update(user)}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Not OK, {ex.Message}");
+        }
     }
 
     public void Delete(User user)
     {
-        Console.Write($"{nameof(Delete)}: ");
-        Operation(_userRepository.Delete(user));
+        Console.Write($"Result: ");
+        try
+        {
+            Console.WriteLine($"OK, {nameof(Delete)}_Id={_userRepository.Delete(user)}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Not OK, {ex.Message}");
+        }
     }
 
-    public void GetById(int id)
+    public void GetById(int id, string password)
     {
-
+        Console.Write($"Result: ");
+        try
+        {
+            Console.WriteLine($"OK, User=[{_userRepository.GetById(id, password)}]");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Not OK, {ex.Message}");
+        }
     }
 
-    public void GetByEmail(string email)
+    public void GetByEmail(string email, string password)
     {
-
+        Console.Write($"Result: ");
+        try
+        {
+            Console.WriteLine($"OK, User=[{_userRepository.GetByEmail(email, password)}]");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Not OK, {ex.Message}");
+        }
     }
 }

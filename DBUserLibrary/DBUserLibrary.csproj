@@ -24,7 +24,6 @@
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.1" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EmailCheckerLibrary\EmailCheckerLibrary.csproj" />
-    <ProjectReference Include="..\PasswordChain\PasswordCheckerLibrary.csproj" />
+    <ProjectReference Include="..\StringCheckerLibrary\StringCheckerLibrary.csproj" />
   </ItemGroup>
 </Project>

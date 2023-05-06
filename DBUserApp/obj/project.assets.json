@@ -1288,25 +1288,14 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
-          "EmailCheckerLibrary": "1.0.0",
           "Microsoft.Data.SqlClient": "5.1.1",
-          "PasswordCheckerLibrary": "1.0.0"
+          "StringCheckerLibrary": "1.0.0"
         },
         "compile": {
           "bin/placeholder/DBUserLibrary.dll": {}
         },
         "runtime": {
           "bin/placeholder/DBUserLibrary.dll": {}
-        }
-      },
-      "EmailCheckerLibrary/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "compile": {
-          "bin/placeholder/EmailCheckerLibrary.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/EmailCheckerLibrary.dll": {}
         }
       },
       "FileWriterLibrary/1.0.0": {
@@ -1319,14 +1308,14 @@
           "bin/placeholder/FileWriterLibrary.dll": {}
         }
       },
-      "PasswordCheckerLibrary/1.0.0": {
+      "StringCheckerLibrary/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "compile": {
-          "bin/placeholder/PasswordCheckerLibrary.dll": {}
+          "bin/placeholder/StringCheckerLibrary.dll": {}
         },
         "runtime": {
-          "bin/placeholder/PasswordCheckerLibrary.dll": {}
+          "bin/placeholder/StringCheckerLibrary.dll": {}
         }
       }
     }
@@ -3442,20 +3431,15 @@
       "path": "../DBUserLibrary/DBUserLibrary.csproj",
       "msbuildProject": "../DBUserLibrary/DBUserLibrary.csproj"
     },
-    "EmailCheckerLibrary/1.0.0": {
-      "type": "project",
-      "path": "../EmailCheckerLibrary/EmailCheckerLibrary.csproj",
-      "msbuildProject": "../EmailCheckerLibrary/EmailCheckerLibrary.csproj"
-    },
     "FileWriterLibrary/1.0.0": {
       "type": "project",
       "path": "../FileWriterLibrary/FileWriterLibrary.csproj",
       "msbuildProject": "../FileWriterLibrary/FileWriterLibrary.csproj"
     },
-    "PasswordCheckerLibrary/1.0.0": {
+    "StringCheckerLibrary/1.0.0": {
       "type": "project",
-      "path": "../PasswordChain/PasswordCheckerLibrary.csproj",
-      "msbuildProject": "../PasswordChain/PasswordCheckerLibrary.csproj"
+      "path": "../StringCheckerLibrary/StringCheckerLibrary.csproj",
+      "msbuildProject": "../StringCheckerLibrary/StringCheckerLibrary.csproj"
     }
   },
   "projectFileDependencyGroups": {

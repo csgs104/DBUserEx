@@ -1,0 +1,12 @@
+/Users/stefanocasagrande/Desktop/DBUserEx/FileWriterLibrary/bin/Debug/net6.0/FileWriterLibrary.deps.json
+/Users/stefanocasagrande/Desktop/DBUserEx/FileWriterLibrary/bin/Debug/net6.0/FileWriterLibrary.dll
+/Users/stefanocasagrande/Desktop/DBUserEx/FileWriterLibrary/bin/Debug/net6.0/FileWriterLibrary.pdb
+/Users/stefanocasagrande/Desktop/DBUserEx/FileWriterLibrary/obj/Debug/net6.0/FileWriterLibrary.csproj.AssemblyReference.cache
+/Users/stefanocasagrande/Desktop/DBUserEx/FileWriterLibrary/obj/Debug/net6.0/FileWriterLibrary.GeneratedMSBuildEditorConfig.editorconfig
+/Users/stefanocasagrande/Desktop/DBUserEx/FileWriterLibrary/obj/Debug/net6.0/FileWriterLibrary.AssemblyInfoInputs.cache
+/Users/stefanocasagrande/Desktop/DBUserEx/FileWriterLibrary/obj/Debug/net6.0/FileWriterLibrary.AssemblyInfo.cs
+/Users/stefanocasagrande/Desktop/DBUserEx/FileWriterLibrary/obj/Debug/net6.0/FileWriterLibrary.csproj.CoreCompileInputs.cache
+/Users/stefanocasagrande/Desktop/DBUserEx/FileWriterLibrary/obj/Debug/net6.0/FileWriterLibrary.dll
+/Users/stefanocasagrande/Desktop/DBUserEx/FileWriterLibrary/obj/Debug/net6.0/refint/FileWriterLibrary.dll
+/Users/stefanocasagrande/Desktop/DBUserEx/FileWriterLibrary/obj/Debug/net6.0/FileWriterLibrary.pdb
+/Users/stefanocasagrande/Desktop/DBUserEx/FileWriterLibrary/obj/Debug/net6.0/ref/FileWriterLibrary.dll

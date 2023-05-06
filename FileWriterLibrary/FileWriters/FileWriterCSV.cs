@@ -8,8 +8,10 @@ public class FileWriterCSV : FileWriter
 {
     public const string csv = ".csv";
 
-    public FileWriterCSV(string name) : base(name)
+    public FileWriterCSV(string name, string content) : base(name, content)
     { }
 
-    public override string FilePath() => Path.Combine(base.FilePath(), csv);
+
+    public override string FilePath() 
+	    => Path.Combine(base.FilePath(), csv);
 }

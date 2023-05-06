@@ -4,5 +4,5 @@ namespace FileWriterLibrary;
 
 public interface IFileWriter
 {
-    public bool FileWrite(string content);
+    public bool FileWrite();
 }

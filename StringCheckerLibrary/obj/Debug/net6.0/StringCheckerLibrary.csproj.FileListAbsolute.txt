@@ -1,0 +1,12 @@
+/Users/stefanocasagrande/Desktop/DBUserEx/StringCheckerLibrary/obj/Debug/net6.0/StringCheckerLibrary.csproj.AssemblyReference.cache
+/Users/stefanocasagrande/Desktop/DBUserEx/StringCheckerLibrary/obj/Debug/net6.0/StringCheckerLibrary.GeneratedMSBuildEditorConfig.editorconfig
+/Users/stefanocasagrande/Desktop/DBUserEx/StringCheckerLibrary/obj/Debug/net6.0/StringCheckerLibrary.AssemblyInfoInputs.cache
+/Users/stefanocasagrande/Desktop/DBUserEx/StringCheckerLibrary/obj/Debug/net6.0/StringCheckerLibrary.AssemblyInfo.cs
+/Users/stefanocasagrande/Desktop/DBUserEx/StringCheckerLibrary/obj/Debug/net6.0/StringCheckerLibrary.csproj.CoreCompileInputs.cache
+/Users/stefanocasagrande/Desktop/DBUserEx/StringCheckerLibrary/bin/Debug/net6.0/StringCheckerLibrary.deps.json
+/Users/stefanocasagrande/Desktop/DBUserEx/StringCheckerLibrary/bin/Debug/net6.0/StringCheckerLibrary.dll
+/Users/stefanocasagrande/Desktop/DBUserEx/StringCheckerLibrary/bin/Debug/net6.0/StringCheckerLibrary.pdb
+/Users/stefanocasagrande/Desktop/DBUserEx/StringCheckerLibrary/obj/Debug/net6.0/StringCheckerLibrary.dll
+/Users/stefanocasagrande/Desktop/DBUserEx/StringCheckerLibrary/obj/Debug/net6.0/refint/StringCheckerLibrary.dll
+/Users/stefanocasagrande/Desktop/DBUserEx/StringCheckerLibrary/obj/Debug/net6.0/StringCheckerLibrary.pdb
+/Users/stefanocasagrande/Desktop/DBUserEx/StringCheckerLibrary/obj/Debug/net6.0/ref/StringCheckerLibrary.dll

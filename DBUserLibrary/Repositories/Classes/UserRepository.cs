@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Data;
+using System.Data.Common;
 using Microsoft.Data.SqlClient;
 
 using DBUserLibrary.Entities.Abstract;
 using DBUserLibrary.Entities.Classes;
 using DBUserLibrary.Repositories.Abstract;
 
-using EmailCheckerLibrary;
-using PasswordCheckerLibrary;
-using System.Data.Common;
+using StringCheckerLibrary;
+using StringCheckerLibrary.EmailChecker;
+using StringCheckerLibrary.PasswordChecker;
+
 
 namespace DBUserLibrary.Repositories.Classes;
 
@@ -19,34 +21,33 @@ public class UserRepository : BaseRepository, IUserRepository
     const string cPassword = nameof(User.Password);
     const string cDate = nameof(User.Date);
 
-    const string tPersons = "[Persons].[dbo].[Person]";
+    const string tPersons = "[Users].[dbo].[User]";
 
     const string pId = "@" + cId;
     const string pEmail = "@" + cEmail;
     const string pPassword = "@" + cPassword;
     const string pDate = "@" + cDate;
 
+    private static StringCheckerHandler eckh = new EmailCheckerHandler();
+    private static StringCheckerHandler pckh = new PasswordCheckerHandler();
+
 
     public UserRepository(string connection) : base(connection)
     { }
 
-    private static void EmailCheck(string email)
+
+    private static void Check(string email, StringCheckerHandler sckh)
     {
-        var cke = EmailCheckerHandler.EmailCheck(email);
-        if (!cke.Item1)
+        var ck = sckh.Check(email);
+        if (!ck.Item1)
         {
-            throw new Exception(cke.Item2);
+            throw new Exception(ck.Item2);
         }
     }
 
-    private static void PasswordCheck(string password)
-    {
-        var ckp = PasswordCheckerHandler.PasswordCheck(password);
-        if (!ckp.Item1)
-        {
-            throw new Exception(ckp.Item2);
-        }
-    }
+    private static void EmailCheck(string email) => Check(email, eckh);
+
+    private static void PasswordCheck(string password) => Check(password, pckh);
 
 
     public User GetById(int id, string password)
@@ -94,6 +95,7 @@ public class UserRepository : BaseRepository, IUserRepository
             using var cn = new SqlConnection(Connection);
             using var cmd = new SqlCommand(command, cn);
             var sqlParameters = parameters.Select(x => new SqlParameter(x.Key, x.Value)).ToArray();
+
             cmd.Parameters.AddRange(sqlParameters);
             cn.Open();
 
@@ -101,19 +103,20 @@ public class UserRepository : BaseRepository, IUserRepository
             if (reader?.Read() == true)
             {
                 user = new User(reader.GetInt32(cId), reader.GetString(cEmail),
-                                reader.GetString(pPassword), reader.GetDateTime(cDate));
+                                reader.GetString(cPassword), reader.GetDateTime(cDate));
             }
             return user;
         }
         catch (SqlException ex)
         {
+            // Console.WriteLine(ex.Message);
             return user;
         }
     }
 
     public int Insert(User user)
     {
-        PasswordCheck(user.Email);
+        EmailCheck(user.Email);
         PasswordCheck(user.Password);
 
         var command = $@"
@@ -131,12 +134,14 @@ public class UserRepository : BaseRepository, IUserRepository
             { pDate, user.Date }
         };
 
-        return TryExecute(command, p) ? GetUser(cmd, p)!.Id : throw new Exception($"{Insert} Failed.");
+        return TryExecute(command, p) 
+	           ? GetUser(cmd, p)!.Id 
+	           : throw new Exception($"{nameof(Insert)} Failed.");
     }
 
     public int Update(User user)
     {
-        PasswordCheck(user.Email);
+        EmailCheck(user.Email);
         PasswordCheck(user.Password);
 
         var command = $@"
@@ -158,28 +163,29 @@ public class UserRepository : BaseRepository, IUserRepository
             { pPassword, user.Password },
             { pDate, user.Date }
         };
-        return TryExecute(command, p) ? GetUser(cmd, p)!.Id : throw new Exception($"{Update} Failed.");
+        return TryExecute(command, p) 
+	           ? GetUser(cmd, p)!.Id 
+	           : throw new Exception($"{Update} Failed.");
     }
 
     public int Delete(User user)
     {
-        PasswordCheck(user.Email);
+        EmailCheck(user.Email);
         PasswordCheck(user.Password);
 
         var command = $@"
             DELETE FROM {tPersons} 
             WHERE [{cEmail}] = {pEmail} AND [{cPassword}] = {pPassword} AND [{cDate}] = {pDate};";
 
-        var cmd = $@"
-            SELECT * FROM {tPersons} 
-            WHERE [{cEmail}] = {pEmail} AND [{cPassword}] = {pPassword} AND [{cDate}] = {pDate}";
-
         var p = new Dictionary<string, object>()
         {
+            { pId, user.Id },
             { pEmail, user.Email },
             { pPassword, user.Password },
             { pDate, user.Date }
         };
-        return TryExecute(command, p) ? 1 : 0;
+        return TryExecute(command, p) 
+	           ? user.Id 
+	           : throw new Exception($"{nameof(Delete)} Failed.");
     }
 }

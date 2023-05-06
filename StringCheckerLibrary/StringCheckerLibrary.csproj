@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="EmailChecker\" />
+    <None Remove="PasswordChecker\" />
+    <None Remove="EmailChecker\Checkers\" />
+    <None Remove="PasswordChecker\Checkers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="EmailChecker\" />
+    <Folder Include="PasswordChecker\" />
+    <Folder Include="EmailChecker\Checkers\" />
+    <Folder Include="PasswordChecker\Checkers\" />
+  </ItemGroup>
+</Project>

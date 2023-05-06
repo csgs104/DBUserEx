@@ -3,20 +3,16 @@
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.ItemProperties.PasswordCheckerLibrary FirstBuild="True" />
-  <MonoDevelop.Ide.ItemProperties.FileWriterLibrary FirstBuild="True" />
-  <MonoDevelop.Ide.ItemProperties.DBUserLibrary FirstBuild="True" />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.ItemProperties.DBUserApp PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.ItemProperties.EmailCheckerLibrary FirstBuild="True" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="PasswordChain/Class1.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="DBUserLibrary/DataBases/Classes/UserDB.cs">
     <Files>
-      <File FileName="DBUserLibrary/Repositories/PersonRepository.cs" Line="58" Column="27" />
-      <File FileName="DBUserLibrary/Repositories/Interfaces/IPersonRepository.cs" Line="10" Column="2" />
-      <File FileName="DBUserLibrary/Repositories/Classes/ARepository.cs" Line="26" Column="1" />
-      <File FileName="DBUserLibrary/DB/Initialization.cs" Line="39" Column="64" />
-      <File FileName="PasswordChain/Class1.cs" Line="15" Column="1" />
+      <File FileName="DBUserApp/Program.cs" Line="35" Column="1" />
+      <File FileName="DBUserApp/IoC/Startup.cs" Line="38" Column="2" />
+      <File FileName="DBUserLibrary/DataBases/Abstract/BaseDB.cs" Line="39" Column="13" />
+      <File FileName="DBUserApp/appsettings.json" Line="2" Column="24" />
+      <File FileName="DBUserLibrary/DataBases/Classes/UserDB.cs" Line="33" Column="67" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -25,10 +21,26 @@
             <Node name="DBUserApp" expanded="True">
               <Node name="Dependencies" expanded="True" />
               <Node name="IoC" expanded="True" />
+              <Node name="Services" expanded="True">
+                <Node name="Abstract" expanded="True" />
+                <Node name="Classes" expanded="True" />
+              </Node>
+              <Node name="Writers" expanded="True" />
             </Node>
-            <Node name="DBUserLibrary" expanded="True" />
-            <Node name="PasswordChain" expanded="True">
-              <Node name="Class1.cs" selected="True" />
+            <Node name="DBUserLibrary" expanded="True">
+              <Node name="DataBases" expanded="True">
+                <Node name="Abstract" expanded="True" />
+                <Node name="Classes" expanded="True">
+                  <Node name="UserDB.cs" selected="True" />
+                </Node>
+              </Node>
+              <Node name="Entities" expanded="True">
+                <Node name="Abstract" expanded="True" />
+                <Node name="Classes" expanded="True" />
+              </Node>
+            </Node>
+            <Node name="StringCheckerLibrary" expanded="True">
+              <Node name="PasswordChecker" expanded="True" />
             </Node>
           </Node>
         </State>

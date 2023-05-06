@@ -712,24 +712,14 @@
           }
         }
       },
-      "EmailCheckerLibrary/1.0.0": {
+      "StringCheckerLibrary/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "compile": {
-          "bin/placeholder/EmailCheckerLibrary.dll": {}
+          "bin/placeholder/StringCheckerLibrary.dll": {}
         },
         "runtime": {
-          "bin/placeholder/EmailCheckerLibrary.dll": {}
-        }
-      },
-      "PasswordCheckerLibrary/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "compile": {
-          "bin/placeholder/PasswordCheckerLibrary.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/PasswordCheckerLibrary.dll": {}
+          "bin/placeholder/StringCheckerLibrary.dll": {}
         }
       }
     }
@@ -2016,22 +2006,16 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "EmailCheckerLibrary/1.0.0": {
+    "StringCheckerLibrary/1.0.0": {
       "type": "project",
-      "path": "../EmailCheckerLibrary/EmailCheckerLibrary.csproj",
-      "msbuildProject": "../EmailCheckerLibrary/EmailCheckerLibrary.csproj"
-    },
-    "PasswordCheckerLibrary/1.0.0": {
-      "type": "project",
-      "path": "../PasswordChain/PasswordCheckerLibrary.csproj",
-      "msbuildProject": "../PasswordChain/PasswordCheckerLibrary.csproj"
+      "path": "../StringCheckerLibrary/StringCheckerLibrary.csproj",
+      "msbuildProject": "../StringCheckerLibrary/StringCheckerLibrary.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "EmailCheckerLibrary >= 1.0.0",
       "Microsoft.Data.SqlClient >= 5.1.1",
-      "PasswordCheckerLibrary >= 1.0.0"
+      "StringCheckerLibrary >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -2060,11 +2044,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "/Users/stefanocasagrande/Desktop/DBUserEx/EmailCheckerLibrary/EmailCheckerLibrary.csproj": {
-              "projectPath": "/Users/stefanocasagrande/Desktop/DBUserEx/EmailCheckerLibrary/EmailCheckerLibrary.csproj"
-            },
-            "/Users/stefanocasagrande/Desktop/DBUserEx/PasswordChain/PasswordCheckerLibrary.csproj": {
-              "projectPath": "/Users/stefanocasagrande/Desktop/DBUserEx/PasswordChain/PasswordCheckerLibrary.csproj"
+            "/Users/stefanocasagrande/Desktop/DBUserEx/StringCheckerLibrary/StringCheckerLibrary.csproj": {
+              "projectPath": "/Users/stefanocasagrande/Desktop/DBUserEx/StringCheckerLibrary/StringCheckerLibrary.csproj"
             }
           }
         }

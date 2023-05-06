@@ -1,6 +1,14 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
 using DBUserApp.IoC;
+using DBUserApp.Services.Abstract;
+using DBUserApp.Writers;
+
+using DBUserLibrary.DataBases.Abstract;
+using DBUserLibrary.DataBases.Classes;
+using DBUserLibrary.Entities.Classes;
+
+using FileWriterLibrary;
 
 /*
 
@@ -20,7 +28,26 @@ Posso ristampare una ricevuta
 Console.WriteLine("Hello.");
 
 var host = Startup.CreateHostBuilder().Build();
-// var variable = host.Services.GetService<...>();
+var db = host.Services.GetService<IDataBase>();
+var users = host.Services.GetService<IUserService>();
 
+Console.WriteLine(db?.Initialize());
+
+users?.GetById(1, "Password1$");
+users?.GetById(2, "Password1$");
+users?.GetById(3, "Password1$");
+
+users?.GetByEmail("pippipippi@mail.com", "Password1$");
+users?.GetByEmail("pippapippa@mail.com", "Password1$");
+users?.GetByEmail("pippopippo@mail.com", "Password1$");
+
+users?.Insert(new User("pappapappa@mail.com", "Password1$", new DateTime(2023, 05, 06)));
+users?.Insert(new User("pappapappa@mail.com", "Password1$", new DateTime(2023, 05, 06)));
+users?.Insert(new User("poppopoppo@mail.com", "Password1$", new DateTime(2023, 05, 06)));
+users?.Insert(new User("poppopoppo@mail.com", "Password1$", new DateTime(2023, 05, 06)));
+
+/*
+FileWriter fv = new FileWriterUserCSV(new User("poppopoppo@mail.com", "Password1$", new DateTime(2023, 05, 06)));
+*/
 
 Console.WriteLine("Bye.");

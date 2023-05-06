@@ -10,7 +10,8 @@
         "dependencies": {
           "DBUserLibrary": "1.0.0",
           "FileWriterLibrary": "1.0.0",
-          "Microsoft.Extensions.Hosting": "7.0.1"
+          "Microsoft.Extensions.Hosting": "7.0.1",
+          "StringCheckerLibrary": "1.0.0"
         },
         "runtime": {
           "DBUserApp.dll": {}

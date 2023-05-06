@@ -3446,7 +3446,8 @@
     "net6.0": [
       "DBUserLibrary >= 1.0.0",
       "FileWriterLibrary >= 1.0.0",
-      "Microsoft.Extensions.Hosting >= 7.0.1"
+      "Microsoft.Extensions.Hosting >= 7.0.1",
+      "StringCheckerLibrary >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -3480,6 +3481,9 @@
             },
             "/Users/stefanocasagrande/Desktop/DBUserEx/FileWriterLibrary/FileWriterLibrary.csproj": {
               "projectPath": "/Users/stefanocasagrande/Desktop/DBUserEx/FileWriterLibrary/FileWriterLibrary.csproj"
+            },
+            "/Users/stefanocasagrande/Desktop/DBUserEx/StringCheckerLibrary/StringCheckerLibrary.csproj": {
+              "projectPath": "/Users/stefanocasagrande/Desktop/DBUserEx/StringCheckerLibrary/StringCheckerLibrary.csproj"
             }
           }
         }

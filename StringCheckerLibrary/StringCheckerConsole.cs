@@ -2,6 +2,8 @@
 
 namespace StringCheckerLibrary;
 
+// OPTIONAL
+
 public abstract class StringCheckerConsole
 {
     protected abstract StringCheckerHandler HandlerChecker();

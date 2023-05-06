@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Xml.Linq;
+using System.IO;
 
 namespace FileWriterLibrary;
 
@@ -9,11 +9,13 @@ public abstract class BaseFileWriter : IFileWriter
 
 	public string BasePath { get => _basepath; }
 
-	public BaseFileWriter()
+	public BaseFileWriter(string basepath)
 	{
-		_basepath = Directory.GetCurrentDirectory();
+		_basepath = basepath;
     }
 
+	public BaseFileWriter()
+	: this(Directory.GetCurrentDirectory()) { }
 
     public abstract bool FileWrite();
 }

@@ -14,58 +14,52 @@ using StringCheckerLibrary.PasswordChecker;
 
 namespace DBUserLibrary.Repositories.Classes;
 
-public class UserRepository : BaseRepository, IUserRepository
+public class UserRepository : EntityRepository, IUserRepository
 {
-    const string cId = nameof(User.Id);
-    const string cEmail = nameof(User.Email);
-    const string cPassword = nameof(User.Password);
-    const string cDate = nameof(User.Date);
+    private readonly IStringChecker _emailChecker;
+    private readonly IStringChecker _passwordChecker;
 
-    const string tPersons = "[Users].[dbo].[User]";
+    public IStringChecker EmailChecker { get => _emailChecker; }
+    public IStringChecker PasswordChecker { get => _passwordChecker; }
 
-    const string pId = "@" + cId;
-    const string pEmail = "@" + cEmail;
-    const string pPassword = "@" + cPassword;
-    const string pDate = "@" + cDate;
-
-    private static StringCheckerHandler eckh = new EmailCheckerHandler();
-    private static StringCheckerHandler pckh = new PasswordCheckerHandler();
-
-
-    public UserRepository(string connection) : base(connection)
-    { }
-
-
-    private static void Check(string email, StringCheckerHandler sckh)
+    public UserRepository(string cn, IStringChecker emailChecker, IStringChecker passwordChecker) 
+	: base(cn, "[Users].[dbo].[User]") 
     {
-        var ck = sckh.Check(email);
-        if (!ck.Item1)
-        {
-            throw new Exception(ck.Item2);
-        }
+        _emailChecker = emailChecker;
+        _passwordChecker = passwordChecker;
     }
 
-    private static void EmailCheck(string email) => Check(email, eckh);
+    public UserRepository(string cn) 
+	: this(cn, new EmailCheckerHandler(), new PasswordCheckerHandler()) { }
 
-    private static void PasswordCheck(string password) => Check(password, pckh);
+
+    private void EmailCheck(string email)
+    {
+        var ck = EmailChecker.Check(email);
+        if (!ck.Item1) throw new Exception(ck.Item2);
+    }
+
+    private void PasswordCheck(string password)
+    {
+        var ck = PasswordChecker.Check(password);
+        if (!ck.Item1) throw new Exception(ck.Item2);
+    }
 
 
     public User GetById(int id, string password)
     {
         PasswordCheck(password);
 
-        var cmd = $@"
-            SELECT * FROM {tPersons}
-            WHERE [{cId}] = {pId} AND [{cPassword}] = {pPassword}";
+        var ni = nameof(User.Id);
+        var np = nameof(User.Password);
 
-        var p = new Dictionary<string, object>()
-        {
-            { pId, id },
-            { pPassword, password }
-        };
+        var scmd = $@" SELECT * FROM {Table} WHERE [{ni}]=(@{ni}) AND [{np}]=(@{np})";
 
-        User? user = GetUser(cmd, p);
-        return user is not null ? user : throw new Exception("User Not Found.");
+        var prms = new Dictionary<string, object>();
+        prms.Add($"@{ni}", id);
+        prms.Add($"@{np}", password);
+
+        return (User)GetEntity(scmd, prms);
     }
 
     public User GetByEmail(string email, string password)
@@ -73,119 +67,45 @@ public class UserRepository : BaseRepository, IUserRepository
         PasswordCheck(email);
         PasswordCheck(password);
 
-        var cmd = $@"
-            SELECT * FROM {tPersons} 
-            WHERE [{cEmail}] = {pEmail} AND [{cPassword}] = {pPassword}";
+        var ne = nameof(User.Email);
+        var np = nameof(User.Password);
 
-        var p = new Dictionary<string, object>()
-        {
-            { pEmail, email  },
-            { pPassword, password }
-        };
+        var scmd = $@"SELECT * FROM {Table} WHERE [{ne}]=(@{ne}) AND [{np}]=(@{np})";
 
-        User? user = GetUser(cmd, p);
-        return user is not null ? user : throw new Exception("User Not Found.");
+        var prms = new Dictionary<string, object>();
+        prms.Add($"@{ne}", email);
+        prms.Add($"@{np}", password);
+
+        return (User)GetEntity(scmd, prms);
     }
 
-    protected User? GetUser(string command, Dictionary<string, object> parameters)
+    protected override Entity ReadEntity(SqlDataReader reader)
     {
-        User? user = null;
-        try
-        {
-            using var cn = new SqlConnection(Connection);
-            using var cmd = new SqlCommand(command, cn);
-            var sqlParameters = parameters.Select(x => new SqlParameter(x.Key, x.Value)).ToArray();
-
-            cmd.Parameters.AddRange(sqlParameters);
-            cn.Open();
-
-            using var reader = cmd.ExecuteReader(CommandBehavior.CloseConnection | CommandBehavior.SingleRow);
-            if (reader?.Read() == true)
-            {
-                user = new User(reader.GetInt32(cId), reader.GetString(cEmail),
-                                reader.GetString(cPassword), reader.GetDateTime(cDate));
-            }
-            return user;
-        }
-        catch (SqlException ex)
-        {
-            // Console.WriteLine(ex.Message);
-            return user;
-        }
+        return new User(reader.GetInt32(nameof(User.Id)),
+                        reader.GetString(nameof(User.Email)),
+                        reader.GetString(nameof(User.Password)),
+                        reader.GetDateTime(nameof(User.Date)));
     }
 
-    public int Insert(User user)
+
+    public int InsertUser(User user)
     {
         EmailCheck(user.Email);
         PasswordCheck(user.Password);
-
-        var command = $@"
-            INSERT INTO {tPersons} ([{cEmail}],[{cPassword}],[{cDate}])
-            VALUES ( {pEmail}, {pPassword}, {pDate} )";
-
-        var cmd = $@"
-            SELECT * FROM {tPersons} 
-            WHERE [{cEmail}] = {pEmail} AND [{cPassword}] = {pPassword} AND [{cDate}] = {pDate}";
-
-        var p = new Dictionary<string, object>()
-        {
-            { pEmail, user.Email },
-            { pPassword, user.Password },
-            { pDate, user.Date }
-        };
-
-        return TryExecute(command, p) 
-	           ? GetUser(cmd, p)!.Id 
-	           : throw new Exception($"{nameof(Insert)} Failed.");
+        return base.Insert(user);
     }
 
-    public int Update(User user)
+    public int UpdateUser(User user)
     {
         EmailCheck(user.Email);
         PasswordCheck(user.Password);
-
-        var command = $@"
-            UPDATE {tPersons}
-            SET 
-            [{cEmail}] = {pEmail},
-            [{cPassword}] = {pPassword},
-            [{cDate}] = {pDate}
-            WHERE [{cId}] = {pId};";
-
-        var cmd = $@"
-            SELECT * FROM {tPersons} 
-            WHERE [{cId}] = {pId} AND [{cEmail}] = {pEmail} AND [{cPassword}] = {pPassword} AND [{cDate}] = {pDate}";
-
-        var p = new Dictionary<string, object>()
-        {
-            { pId, user.Id },
-            { pEmail, user.Email },
-            { pPassword, user.Password },
-            { pDate, user.Date }
-        };
-        return TryExecute(command, p) 
-	           ? GetUser(cmd, p)!.Id 
-	           : throw new Exception($"{Update} Failed.");
+        return base.Update(user);
     }
 
-    public int Delete(User user)
+    public int DeleteUser(User user)
     {
         EmailCheck(user.Email);
         PasswordCheck(user.Password);
-
-        var command = $@"
-            DELETE FROM {tPersons} 
-            WHERE [{cEmail}] = {pEmail} AND [{cPassword}] = {pPassword} AND [{cDate}] = {pDate};";
-
-        var p = new Dictionary<string, object>()
-        {
-            { pId, user.Id },
-            { pEmail, user.Email },
-            { pPassword, user.Password },
-            { pDate, user.Date }
-        };
-        return TryExecute(command, p) 
-	           ? user.Id 
-	           : throw new Exception($"{nameof(Delete)} Failed.");
+        return base.Update(user);
     }
 }

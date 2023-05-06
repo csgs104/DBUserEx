@@ -20,9 +20,12 @@ public static class Startup
 {
     public static IHostBuilder CreateHostBuilder()
     {
-        // build the filepath of appsettings.json
-        var basepath = @"/Users/stefanocasagrande/Desktop/DBUserEx/DBUserApp";
-        var filepath = Path.Combine(basepath, "appsettings.json");
+        // build the basepath of appsettings.json 
+	    // not system dependent maybe... try on windows and tell me!
+        var path = Directory.GetCurrentDirectory();
+        var root = Path.GetPathRoot(path) ?? string.Empty;
+        var b = Path.Combine(path.Split(Path.DirectorySeparatorChar).TakeWhile(s => !s.Equals("bin")).ToArray());
+        var basepath = Path.Combine(root, b, "appsettings.json");
 
         // add the filepath of appsettings.json to host
         var host = Host.CreateDefaultBuilder().UseContentRoot(basepath);
@@ -30,9 +33,10 @@ public static class Startup
         // configure host
         return host.ConfigureServices((context, service)
             => {
-                    var cs = context.Configuration["ConnectionString"];
-                    service.AddSingleton<IDataBase>(_ => new UserDB(cs!));
-                    service.AddSingleton<IUserService>(_ => new UserService(cs!));
+                    var cs = context.Configuration["ConnectionString"] ?? string.Empty;
+                    service.AddSingleton<IDataBase>(_ => new UserDB(cs));
+                    service.AddSingleton<IUserService>(_ => new UserService(cs));
+                    // ... 
                 });
     }
 }

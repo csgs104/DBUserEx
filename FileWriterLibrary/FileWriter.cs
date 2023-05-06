@@ -11,15 +11,25 @@ public class FileWriter : BaseFileWriter
     public string Name { get => _name; }
     public string Content { get => _content; }
 
-    public FileWriter(string name, string content) : base()
+    public FileWriter(string basepath, string name, string content) 
+	: base(basepath)
+    {
+        _name = name;
+        _content = content;
+    }
+
+    public FileWriter(string name, string content) 
+	: base()
 	{
 		_name = name;
         _content = content;
     }
 
 
-    public virtual string FilePath() 
-		=> Path.Combine(BasePath, Name);
+	public virtual string FilePath()
+	{
+		return Path.Combine(BasePath, Name);
+	}
 
 	public override bool FileWrite() 
     {
@@ -30,6 +40,7 @@ public class FileWriter : BaseFileWriter
 		}
 		catch (Exception ex)
 		{
+			// Console.WriteLine(ex.Message);
 			return false;
 		}
 	}

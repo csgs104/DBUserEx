@@ -9,6 +9,7 @@ using DBUserLibrary.DataBases.Classes;
 using DBUserLibrary.Entities.Classes;
 
 using FileWriterLibrary;
+using FileWriterLibrary.FileWriters;
 
 /*
 
@@ -27,27 +28,42 @@ Posso ristampare una ricevuta
 
 Console.WriteLine("Hello.");
 
-var host = Startup.CreateHostBuilder().Build();
-var db = host.Services.GetService<IDataBase>();
-var users = host.Services.GetService<IUserService>();
+Console.WriteLine("TEST for HOST:");
 
-Console.WriteLine(db?.Initialize());
+var start = Startup.CreateHostBuilder() 
+            ?? throw new Exception("Not Started.");
+var host = start.Build() 
+           ?? throw new Exception("Host Not Found.");
+var db = host.Services.GetService<IDataBase>() 
+         ?? throw new Exception("DataBase not Found.");
+var users = host.Services.GetService<IUserService>() 
+            ?? throw new Exception("UserService not Found.");
 
-users?.GetById(1, "Password1$");
-users?.GetById(2, "Password1$");
-users?.GetById(3, "Password1$");
+Console.WriteLine("TEST for DB.");
 
-users?.GetByEmail("pippipippi@mail.com", "Password1$");
-users?.GetByEmail("pippapippa@mail.com", "Password1$");
-users?.GetByEmail("pippopippo@mail.com", "Password1$");
+Console.WriteLine(db.Initialize());
 
-users?.Insert(new User("pappapappa@mail.com", "Password1$", new DateTime(2023, 05, 06)));
-users?.Insert(new User("pappapappa@mail.com", "Password1$", new DateTime(2023, 05, 06)));
-users?.Insert(new User("poppopoppo@mail.com", "Password1$", new DateTime(2023, 05, 06)));
-users?.Insert(new User("poppopoppo@mail.com", "Password1$", new DateTime(2023, 05, 06)));
+Console.WriteLine("TEST for USERSERVICE.");
+
+Console.WriteLine("Get by: Id and Password.");
+users.GetById(1, "Password1$");
+users.GetById(2, "Password1$");
+users.GetById(3, "Password1$");
+
+Console.WriteLine("Get by: Email and Password.");
+users.GetByEmail("pippipippi@mail.com", "Password1$");
+users.GetByEmail("pippapippa@mail.com", "Password1$");
+users.GetByEmail("pippopippo@mail.com", "Password1$");
 
 /*
-FileWriter fv = new FileWriterUserCSV(new User("poppopoppo@mail.com", "Password1$", new DateTime(2023, 05, 06)));
+Console.WriteLine("Isert");
+users?.Insert(new User("pappapappa@mail.com", "Password1$"));
+users?.Insert(new User("pappapappa@mail.com", "Password1$"));
+users?.Insert(new User("poppopoppo@mail.com", "Password1$"));
+users?.Insert(new User("poppopoppo@mail.com", "Password1$"));
 */
+
+User user = new User(2001, "poppopoppo@mail.com", "Password1$");
+Console.WriteLine((new FileWriterUserCSV(user)).FileWrite());
 
 Console.WriteLine("Bye.");

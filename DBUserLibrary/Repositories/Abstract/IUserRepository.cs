@@ -3,12 +3,15 @@ using DBUserLibrary.Entities.Classes;
 
 namespace DBUserLibrary.Repositories.Abstract;
 
-public interface IUserRepository
+public interface IUserRepository : IEntityRepository
 {
     public User GetById(int id, string password);
+
     public User GetByEmail(string email, string password);
 
-    public int Insert(User user);
-    public int Update(User user);
-    public int Delete(User user);
+    public int InsertUser(User user);
+
+    public int UpdateUser(User user);
+
+    public int DeleteUser(User user);
 }

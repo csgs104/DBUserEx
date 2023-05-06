@@ -1,5 +1,7 @@
 ﻿using System;
 
+// 4
+
 namespace StringCheckerLibrary
 {
 	public abstract class StringCheckerChain

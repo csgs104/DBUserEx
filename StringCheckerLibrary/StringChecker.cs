@@ -2,6 +2,8 @@
 
 namespace StringCheckerLibrary;
 
+// 1
+
 public abstract class StringChecker : IStringChecker
 {
     protected IStringChecker? _successor;

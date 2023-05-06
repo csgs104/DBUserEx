@@ -2,7 +2,9 @@
 
 namespace StringCheckerLibrary;
 
-public abstract class StringCheckerHandler
+// 5
+
+public abstract class StringCheckerHandler : IStringChecker
 {
     protected abstract StringCheckerChain CheckerChain();
 

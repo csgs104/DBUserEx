@@ -5,18 +5,24 @@ using DBUserLibrary.Entities.Classes;
 using DBUserLibrary.Repositories.Abstract;
 using DBUserLibrary.Repositories.Classes;
 
+using StringCheckerLibrary;
+
 using DBUserApp.Services.Abstract;
 
 namespace DBUserApp.Services.Classes;
-
 
 public class UserService : IUserService
 {
     private readonly IUserRepository _userRepository;
 
-    public UserService(string connection)
+    public UserService(string cn)
     {
-        _userRepository = new UserRepository(connection);
+        _userRepository = new UserRepository(cn);
+    }
+
+    public UserService(string cn, IStringChecker emailChecker, IStringChecker passwordChecker)
+    {
+        _userRepository = new UserRepository(cn, emailChecker, passwordChecker);
     }
 
     public void Insert(User user)

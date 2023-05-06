@@ -3,6 +3,8 @@ using System.Text.RegularExpressions;
 
 namespace StringCheckerLibrary;
 
+// 2
+
 public abstract class BaseStringChecker : StringChecker
 {
     protected abstract string Expressions();

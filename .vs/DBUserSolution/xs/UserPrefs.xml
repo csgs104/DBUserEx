@@ -6,44 +6,18 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.ItemProperties.DBUserApp PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="DBUserLibrary/DataBases/Classes/UserDB.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="DBUserApp/Program.cs">
     <Files>
-      <File FileName="DBUserApp/Program.cs" Line="35" Column="1" />
-      <File FileName="DBUserApp/IoC/Startup.cs" Line="38" Column="2" />
-      <File FileName="DBUserLibrary/DataBases/Abstract/BaseDB.cs" Line="39" Column="13" />
-      <File FileName="DBUserApp/appsettings.json" Line="2" Column="24" />
-      <File FileName="DBUserLibrary/DataBases/Classes/UserDB.cs" Line="33" Column="67" />
+      <File FileName="DBUserApp/Program.cs" Line="63" Column="59" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="DBUserSolution" expanded="True">
-            <Node name="DBUserApp" expanded="True">
-              <Node name="Dependencies" expanded="True" />
-              <Node name="IoC" expanded="True" />
-              <Node name="Services" expanded="True">
-                <Node name="Abstract" expanded="True" />
-                <Node name="Classes" expanded="True" />
-              </Node>
-              <Node name="Writers" expanded="True" />
-            </Node>
-            <Node name="DBUserLibrary" expanded="True">
-              <Node name="DataBases" expanded="True">
-                <Node name="Abstract" expanded="True" />
-                <Node name="Classes" expanded="True">
-                  <Node name="UserDB.cs" selected="True" />
-                </Node>
-              </Node>
-              <Node name="Entities" expanded="True">
-                <Node name="Abstract" expanded="True" />
-                <Node name="Classes" expanded="True" />
-              </Node>
-            </Node>
-            <Node name="StringCheckerLibrary" expanded="True">
-              <Node name="PasswordChecker" expanded="True" />
-            </Node>
-          </Node>
+          <Node name="DBUserSolution" expanded="True" />
         </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>

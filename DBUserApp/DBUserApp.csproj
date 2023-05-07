@@ -29,4 +29,9 @@
     <ProjectReference Include="..\DBUserLibrary\DBUserLibrary.csproj" />
     <ProjectReference Include="..\StringCheckerLibrary\StringCheckerLibrary.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>

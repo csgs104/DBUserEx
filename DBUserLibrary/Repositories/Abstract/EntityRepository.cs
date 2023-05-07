@@ -78,7 +78,7 @@ public abstract class EntityRepository : BaseRepository, IEntityRepository
 
         return TryExecute(ucmd, prms)
                ? GetEntity(scmd, prms).Id
-               : throw new Exception($"{Update} Failed.");
+               : throw new Exception($"Update Failed.");
     }
 
 

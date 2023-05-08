@@ -7,6 +7,8 @@ using DBUserLibrary.Repositories.Abstract;
 using DBUserLibrary.Repositories.Classes;
 using DBUserLibrary.Repositories.Exceptions;
 
+using FileWriterLibrary;
+
 using DBUserApp.Writers;
 using DBUserApp.Services.Modules;
 using DBUserApp.Services.Modules.Abstract;
@@ -44,7 +46,7 @@ public class UserModule : IUserModule
         Console.WriteLine(Name);
         while (true)
         {
-            Console.WriteLine("#### #### #### ####");
+            Console.WriteLine("#### #### #### #### #### #### #### ####");
             Console.WriteLine("UserMenu:");
 
             foreach (var operation in operations)
@@ -61,7 +63,7 @@ public class UserModule : IUserModule
             {
                 Console.WriteLine(e.Message);
                 Console.WriteLine("Returning to MENU.");
-                Console.WriteLine("#### #### #### ####");
+                Console.WriteLine("#### #### #### #### #### #### #### ####");
                 break;
             }
         }
@@ -94,8 +96,9 @@ public class UserModule : IUserModule
         if (search.Item1 is null || search.Item2 is null) return;
 
         User? user = null;
-        try { user = _userRepo.GetByEmail(search.Item1, search.Item2); }
-        catch (EntityNotFoundException ex) { Console.Write($"Processing... "); }
+        try { Console.Write($"Processing... "); 
+	          user = _userRepo.GetByEmail(search.Item1, search.Item2); }
+        catch (EntityNotFoundException ex) { /*...*/ }
         catch (Exception ex) { Console.WriteLine($"Insert cancelled, {ex.Message}"); return; }
 
         if (user is null)
@@ -119,9 +122,10 @@ public class UserModule : IUserModule
         if (search.Item1 is null || search.Item2 is null) return;
 
         User? user = null;
-        try { user = _userRepo.GetByEmail(search.Item1, search.Item2); }
-        catch (EntityNotFoundException ex) { Console.Write($"Processing... "); }
-        catch (Exception ex) { Console.WriteLine($"Update cancelled, {ex.Message}."); return; }
+        try { Console.Write($"Processing... "); 
+	          user = _userRepo.GetByEmail(search.Item1, search.Item2); }
+        // catch (EntityNotFoundException ex) { /*...*/ }
+        catch (Exception ex) { Console.WriteLine($"cancelled, {ex.Message}."); return; }
 
         if (user is not null)
         {
@@ -135,9 +139,10 @@ public class UserModule : IUserModule
             if (searchNew.Item1 is null || searchNew.Item2 is null) return;
 
             User? userNew = null;
-            try { userNew = _userRepo.GetByEmail(searchNew.Item1, searchNew.Item2); }
-            catch (EntityNotFoundException ex) { Console.Write($"Processing... "); }
-            catch (Exception ex) { Console.WriteLine($"Update cancelled, {ex.Message}."); return; }
+            try { Console.Write($"Processing... "); 
+		          userNew = _userRepo.GetByEmail(searchNew.Item1, searchNew.Item2); }
+            catch (EntityNotFoundException ex) { /*...*/ }
+            catch (Exception ex) { Console.WriteLine($"cancelled, {ex.Message}."); return; }
 
             if (userNew is null)
             {
@@ -162,18 +167,18 @@ public class UserModule : IUserModule
         if (search.Item1 is null || search.Item2 is null) return;
 
         User? user = null;
-        try { user = _userRepo.GetByEmail(search.Item1, search.Item2); }
-        catch (EntityNotFoundException ex) { Console.Write($"Processing... "); }
-        catch (Exception ex) { Console.WriteLine($"Delete cancelled, {ex.Message}"); return; }
+        try { Console.Write($"Processing... "); user = _userRepo.GetByEmail(search.Item1, search.Item2); }
+        catch (EntityNotFoundException ex) { /*...*/ }
+        catch (Exception ex) { Console.WriteLine($"cancelled, {ex.Message}"); return; }
 
         if (user is not null)
         {
             Console.WriteLine($"accepted.");
             try { var result = _userRepo.Delete(user);
-                  Console.WriteLine($"Insert completed, Id={result}"); }
-            catch (Exception ex) { Console.WriteLine($"Insert cancelled, {ex.Message}"); }
+                  Console.WriteLine($"Delete completed, Id={result}"); }
+            catch (Exception ex) { Console.WriteLine($"Delete cancelled, {ex.Message}"); }
         }
-        else { Console.WriteLine($"Insert cancelled."); }
+        else { Console.WriteLine($"cancelled."); }
     }
 
     public void SearchUserById()
@@ -201,15 +206,9 @@ public class UserModule : IUserModule
         catch (Exception ex) { Console.WriteLine(ex.Message); }
         if (search.Item1 is null || search.Item2 is null) return;
 
-        try
-        {
-            var user = _userRepo.GetByEmail(search.Item1, search.Item2);
-            Console.WriteLine($"User found: {user}");
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"User not Found: {ex.Message}");
-        }
+        try { var user = _userRepo.GetByEmail(search.Item1, search.Item2);
+              Console.WriteLine($"Found: {user}"); }
+        catch (Exception ex) { Console.WriteLine($"Not Found: {ex.Message}"); }
     }
 
     public void WritingUserData() 
@@ -223,9 +222,10 @@ public class UserModule : IUserModule
 	    if (search.Item1 is null || search.Item2 is null) return;
 
         User? user = null;
-        try { user = _userRepo.GetByEmail(search.Item1, search.Item2); }
-        catch (EntityNotFoundException ex) { Console.Write($"Processing... "); }
-        catch (Exception ex) { Console.WriteLine($"Writing cancelled, {ex.Message}"); return; }
+        try { Console.Write($"Processing... "); 
+	          user = _userRepo.GetByEmail(search.Item1, search.Item2); }
+        // catch (EntityNotFoundException ex) { /*...*/ }
+        catch (Exception ex) { Console.WriteLine($"cancelled, {ex.Message}"); return; }
 
         if (user is not null)
         {
@@ -233,7 +233,7 @@ public class UserModule : IUserModule
             if ((new FileWriterUserCSV(user)).FileWrite()) { Console.WriteLine($"Writing completed."); }
             else { Console.WriteLine($"Writing cancelled."); }
         }
-        else { Console.WriteLine($"Writing cancelled."); }
+        else { Console.WriteLine($"cancelled."); }
     }
 
     private static (string, string) Search() 

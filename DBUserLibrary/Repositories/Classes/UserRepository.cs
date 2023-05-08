@@ -43,7 +43,7 @@ public class UserRepository : EntityRepository, IUserRepository
         var ck = EmailChecker.Check(email);
         if (!ck.Item1) throw new Exception(ck.Item2);
     }
-
+    
     private void PasswordCheck(string password)
     {
         var ck = PasswordChecker.Check(password);
@@ -70,7 +70,7 @@ public class UserRepository : EntityRepository, IUserRepository
 
     public User GetByEmail(string email, string password)
     {
-        PasswordCheck(email);
+        EmailCheck(email);
         PasswordCheck(password);
 
         var ne = nameof(User.Email);

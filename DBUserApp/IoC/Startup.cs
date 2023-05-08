@@ -11,6 +11,10 @@ using DBUserLibrary.Repositories.Classes;
 using FileWriterLibrary;
 using FileWriterLibrary.FileWriters;
 
+using StringCheckerLibrary;
+using StringCheckerLibrary.EmailChecker;
+using StringCheckerLibrary.PasswordChecker;
+
 using DBUserApp.Services.Modules.Abstract;
 using DBUserApp.Services.Modules.Classes;
 using DBUserApp.Services;
@@ -43,7 +47,10 @@ public static class Startup
 		        var cn = context.Configuration["ConnectionString"] ?? string.Empty;
 
                 var db = new UserDB(cn);
-                var userRepo = new UserRepository(cn);
+                var eckh = new EmailCheckerHandler();
+                var pckh = new PasswordCheckerHandler();
+
+                var userRepo = new UserRepository(cn, eckh, pckh);
                 // var ...Repo = new ...Repository(cn);
                 var userMod = new UserModule(userRepo);
                 // var ...Mod = new ...Module(...Repo);

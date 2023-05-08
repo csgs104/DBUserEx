@@ -55,4 +55,6 @@ Console.WriteLine("#### #### #### #### #### #### #### ####");
 
 menu.Start();
 
+Console.WriteLine("#### #### #### #### #### #### #### ####");
+
 Console.WriteLine("Bye.");

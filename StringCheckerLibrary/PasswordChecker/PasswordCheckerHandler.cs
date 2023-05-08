@@ -2,6 +2,7 @@
 
 using StringCheckerLibrary;
 
+
 namespace StringCheckerLibrary.PasswordChecker;
 
 public class PasswordCheckerHandler : StringCheckerHandler

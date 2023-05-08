@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Data;
+
 using Microsoft.Data.SqlClient;
+
 
 namespace DBUserLibrary.Repositories.Abstract;
 
@@ -9,6 +11,7 @@ public abstract class BaseRepository
     private readonly string _connection;
 
     public string Connection { get => _connection; }
+
 
     public BaseRepository(string cn)
 	{

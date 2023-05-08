@@ -3,11 +3,15 @@
 using StringCheckerLibrary;
 using StringCheckerLibrary.PasswordChecker.Checkers;
 
+
 namespace StringCheckerLibrary.PasswordChecker;
 
 public class PasswordCheckerChain : StringCheckerChain
 {
-    protected override IList<StringChecker> Checkers()
+    public PasswordCheckerChain() : base() { }
+
+
+    public override IList<StringChecker> Checkers()
     {
         var list = new List<StringChecker>(4);
         list.Add(new SevenCharactersChecker());

@@ -1,21 +1,49 @@
 ﻿using System;
 using System.IO;
 
+// 2
 namespace FileWriterLibrary;
 
-public abstract class BaseFileWriter : IFileWriter
+public class BaseFileWriter : FileWriter
 {
-	private readonly string _basepath = null!;
+	private readonly string _name = null!;
+    private readonly string _content = null!;
 
-	public string BasePath { get => _basepath; }
+    public string Name { get => _name; }
+    public string Content { get => _content; }
 
-	public BaseFileWriter(string basepath)
-	{
-		_basepath = basepath;
+
+    public BaseFileWriter(string basepath, string name, string content) 
+	: base(basepath)
+    {
+        _name = name;
+        _content = content;
     }
 
-	public BaseFileWriter()
-	: this(Directory.GetCurrentDirectory()) { }
+    public BaseFileWriter(string name, string content) 
+	: base()
+	{
+		_name = name;
+        _content = content;
+    }
 
-    public abstract bool FileWrite();
+
+	public virtual string FilePath()
+	{
+		return Path.Combine(BasePath, Name);
+	}
+
+	public override bool FileWrite() 
+    {
+		try
+		{
+			File.WriteAllText(FilePath(), Content);
+			return true;
+		}
+		catch (Exception ex)
+		{
+			// Console.WriteLine(ex.Message);
+			return false;
+		}
+	}
 }

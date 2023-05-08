@@ -1,8 +1,7 @@
 ﻿using System;
 
-namespace StringCheckerLibrary;
-
 // OPTIONAL
+namespace StringCheckerLibrary;
 
 public abstract class StringCheckerConsole
 {
@@ -11,6 +10,6 @@ public abstract class StringCheckerConsole
     public void WriteLine(string str)
     {
         var r = HandlerChecker().Check(str);
-        Console.WriteLine($"PasswordCheck: {r.Item1} {r.Item2}");
+        Console.WriteLine($"Check: {r.Item1} - {r.Item2}");
     }
 }

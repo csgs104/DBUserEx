@@ -16,6 +16,7 @@ using DBUserApp.Services.Modules.Classes;
 using DBUserApp.Services;
 using DBUserApp.Writers;
 
+
 namespace DBUserApp.IoC;
 
 public static class Startup 
@@ -38,12 +39,31 @@ public static class Startup
         // configure host
         return host.ConfigureServices((context, service)
             => {
-                    var cs = context.Configuration["ConnectionString"] ?? string.Empty;
-                    service.AddSingleton<IDataBase>(_ => new UserDB(cs));
-                    service.AddSingleton<IUserRepository>(_ => new UserRepository(cs));
-                    service.AddSingleton<IModule>(_ => new UserModule(new UserRepository(cs)));
-                    service.AddSingleton<Menu>(_ => new Menu(new List<IModule>() { new UserModule(new UserRepository(cs)) } ));
-                    // ... 
+
+		        var cn = context.Configuration["ConnectionString"] ?? string.Empty;
+
+                var db = new UserDB(cn);
+                var userRepo = new UserRepository(cn);
+                // var ...Repo = new ...Repository(cn);
+                var userMod = new UserModule(userRepo);
+                // var ...Mod = new ...Module(...Repo);
+
+                var listMods = new List<IModule>();
+                listMods.Add(userMod);
+                // listMods.Add(...);
+                // listMods.Add(...);
+                var menu = new Menu(listMods);
+
+                // adding services
+                service.AddSingleton<IDataBase>(_ => db);
+
+                service.AddSingleton<IUserRepository>(_ => userRepo);
+                // service.AddSingleton<I...Repository>(_ => ...Repo);
+                service.AddSingleton<IUserModule>(_ => userMod);
+                // service.AddSingleton<I...Module>(_ => ...Mod);
+
+                service.AddSingleton<IMenu>(_ => menu);
+                // ... 
             });
     }
 }

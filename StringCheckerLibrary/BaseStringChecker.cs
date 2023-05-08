@@ -4,26 +4,29 @@ using System.Text.RegularExpressions;
 namespace StringCheckerLibrary;
 
 // 2
-
 public abstract class BaseStringChecker : StringChecker
 {
-    protected abstract string Expressions();
-
-    protected abstract RegexOptions Options();
-
-    protected abstract string Message();
+    public BaseStringChecker(IStringChecker? successor = default) 
+    : base(successor)
+    { }
 
 
     public override (bool, string) Check(string str)
     {
         if (Regex.IsMatch(str, Expressions(), Options()))
         {
-            if (_successor is not null)
+            if (Successor is not null)
             {
-                return _successor.Check(str);
+                return Successor.Check(str);
             }
             return (true, string.Empty);
         }
         return (false, Message());
     }
+
+    protected abstract string Expressions();
+
+    protected abstract RegexOptions Options();
+
+    protected abstract string Message();
 }

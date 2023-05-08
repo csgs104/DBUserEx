@@ -8,11 +8,12 @@ using DBUserApp.Services.Modules.Exceptions;
 
 namespace DBUserApp.Services;
 
-public class Menu
+public class Menu : IMenu
 {
     private readonly IList<IModule> _modules;
 
     public IList<IModule> Modules { get => _modules; }
+
 
     public Menu(IList<IModule> modules) 
     {
@@ -23,9 +24,8 @@ public class Menu
 
     public void Start()
     {
+        Console.WriteLine("#### #### #### #### #### #### #### ####");
         Console.WriteLine("DBUsersApp");
-
-        Console.WriteLine("...");
         while (true)
         {
             Console.WriteLine("MENU:");
@@ -54,6 +54,7 @@ public class Menu
                 catch (ExitException e)
                 {
                     Console.WriteLine(e.Message);
+                    Console.WriteLine("#### #### #### #### #### #### #### ####");
                     break;
                 }
             }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.Common;
+
 using Microsoft.Data.SqlClient;
 
 using DBUserLibrary.Entities.Abstract;
@@ -13,6 +14,7 @@ using StringCheckerLibrary.PasswordChecker;
 
 using DBUserLibrary.Repositories.Exceptions;
 
+
 namespace DBUserLibrary.Repositories.Classes;
 
 public class UserRepository : EntityRepository, IUserRepository
@@ -23,6 +25,7 @@ public class UserRepository : EntityRepository, IUserRepository
     public IStringChecker EmailChecker { get => _emailChecker; }
     public IStringChecker PasswordChecker { get => _passwordChecker; }
 
+
     public UserRepository(string cn, IStringChecker emailChecker, IStringChecker passwordChecker) 
 	: base(cn, "[Users].[dbo].[User]") 
     {
@@ -31,7 +34,8 @@ public class UserRepository : EntityRepository, IUserRepository
     }
 
     public UserRepository(string cn) 
-	: this(cn, new EmailCheckerHandler(), new PasswordCheckerHandler()) { }
+	: this(cn, new EmailCheckerHandler(), new PasswordCheckerHandler()) 
+    { }
 
 
     private void EmailCheck(string email)
@@ -60,7 +64,8 @@ public class UserRepository : EntityRepository, IUserRepository
         prms.Add($"@{ni}", id);
         prms.Add($"@{np}", password);
 
-        return (User)GetEntity(scmd, prms);
+        var entity = GetEntity(scmd, prms);
+        return entity is User user? user : throw new Exception("Not an User.");
     }
 
     public User GetByEmail(string email, string password)
@@ -77,7 +82,8 @@ public class UserRepository : EntityRepository, IUserRepository
         prms.Add($"@{ne}", email);
         prms.Add($"@{np}", password);
 
-        return (User)GetEntity(scmd, prms);
+        var entity = GetEntity(scmd, prms);
+        return entity is User user ? user : throw new Exception("Not an User.");
     }
 
     protected override Entity ReadEntity(SqlDataReader reader)

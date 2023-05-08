@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 
-using DBUserApp.Writers;
-
 using DBUserLibrary.Entities.Abstract;
 using DBUserLibrary.Entities.Classes;
 using DBUserLibrary.Repositories.Abstract;
 using DBUserLibrary.Repositories.Classes;
 using DBUserLibrary.Repositories.Exceptions;
 
+using DBUserApp.Writers;
 using DBUserApp.Services.Modules;
 using DBUserApp.Services.Modules.Abstract;
 using DBUserApp.Services.Modules.Exceptions;
@@ -16,14 +15,16 @@ using DBUserApp.Services.Modules.Exceptions;
 
 namespace DBUserApp.Services.Modules.Classes;
 
-public class UserModule : IModule
+public class UserModule : IUserModule
 {
-    private readonly IUserRepository _userRepository;
+    private readonly IUserRepository _userRepo;
 
-    public UserModule(IUserRepository userRepository)
+
+    public UserModule(IUserRepository userRepo)
     {
-        _userRepository = userRepository;
+        _userRepo = userRepo;
     }
+
 
     public string Name => "UserMenu";
     public string Command => "User";
@@ -32,6 +33,7 @@ public class UserModule : IModule
     private const string SearchByEmail = "SBE";
     private const string WriteUserData = "WUF";
 
+
     public void Run()
     {
         var operations = Options.Operations();
@@ -39,9 +41,12 @@ public class UserModule : IModule
         operations.Add(SearchByEmail, "Search by Email");
         operations.Add(WriteUserData, "Write User Data");
 
+        Console.WriteLine(Name);
         while (true)
         {
-            Console.WriteLine(Name);
+            Console.WriteLine("#### #### #### ####");
+            Console.WriteLine("UserMenu:");
+
             foreach (var operation in operations)
             {
                 Console.WriteLine($"[{operation.Key}]:\t{operation.Value}");
@@ -55,10 +60,13 @@ public class UserModule : IModule
             catch (ExitException e)
             {
                 Console.WriteLine(e.Message);
+                Console.WriteLine("Returning to MENU.");
+                Console.WriteLine("#### #### #### ####");
                 break;
             }
         }
     }
+
 
     private void ManageChoice(string choice)
     {
@@ -75,298 +83,171 @@ public class UserModule : IModule
         }
     }
 
-    private void InsertUser()
+    public void InsertUser()
     {
         Console.WriteLine("Write Your: \"Email;Password\".");
         Console.WriteLine("Example: \"mymail@mail.com;Password1$\".");
 
-        var commaseparatedstr = Prompt("Write a CommaSeparatedString: ");
-        if (commaseparatedstr is null)
-        {
-            Console.WriteLine("CommaSeparatedString not readable. Operation cancelled.");
-            return;
-        }
-        var search = SimpleParseCommaSeparatedString(commaseparatedstr);
+        (string?, string?) search = (null, null);
+        try { search = Search(); }
+        catch (Exception ex) { Console.WriteLine(ex.Message); }
+        if (search.Item1 is null || search.Item2 is null) return;
 
         User? user = null;
-        try
-        {
-            user = _userRepository.GetByEmail(search.Item1, search.Item2);
-        }
-        catch (EntityNotFoundException ex)
-        {
-            Console.Write($"Processing... ");
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Insert cancelled, {ex.Message}");
-            return;
-        }
+        try { user = _userRepo.GetByEmail(search.Item1, search.Item2); }
+        catch (EntityNotFoundException ex) { Console.Write($"Processing... "); }
+        catch (Exception ex) { Console.WriteLine($"Insert cancelled, {ex.Message}"); return; }
 
-        // ... 
         if (user is null)
         {
-            Console.WriteLine($"Insert accepted.");
-            var result = _userRepository.InsertUser(new User(search.Item1, search.Item2));
-            try
-            {
-                Console.WriteLine($"Insert completed, Id={result}");
-            }
-            catch (Exception ex2)
-            {
-                Console.WriteLine($"Insert cancelled, {ex2.Message}");
-            }
+            Console.WriteLine($"accepted.");
+            try { var result = _userRepo.InsertUser(new User(search.Item1, search.Item2)); 
+		          Console.WriteLine($"Insert completed, Id={result}"); }
+            catch (Exception ex) { Console.WriteLine($"cancelled, {ex.Message}"); }
         }
-        else 
-	    {
-            Console.WriteLine($"Insert cancelled.");
-        }
+        else { Console.WriteLine($"cancelled."); }
     }
 
-    private void UpdateUser()
+    public void UpdateUser()
     {
         Console.WriteLine("Write Your: \"Email;Password\".");
         Console.WriteLine("Example: \"mymail@mail.com;Password1$\".");
-        var commaseparatedstr = Prompt("Write a CommaSeparatedString: ");
-        if (commaseparatedstr is null)
-        {
-            Console.WriteLine("CommaSeparatedString not readable. Operation cancelled.");
-            return;
-        }
-        var search = SimpleParseCommaSeparatedString(commaseparatedstr);
 
+        (string?, string?) search = (null, null);
+        try { search = Search(); }
+        catch (Exception ex) { Console.WriteLine(ex.Message); }
+        if (search.Item1 is null || search.Item2 is null) return;
 
         User? user = null;
-        try
-        {
-            user = _userRepository.GetByEmail(search.Item1, search.Item2);
-        }
-        catch (EntityNotFoundException ex)
-        {
-            Console.WriteLine($"Processing... ");
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Update cancelled, {ex.Message}.");
-            return;
-        }
+        try { user = _userRepo.GetByEmail(search.Item1, search.Item2); }
+        catch (EntityNotFoundException ex) { Console.Write($"Processing... "); }
+        catch (Exception ex) { Console.WriteLine($"Update cancelled, {ex.Message}."); return; }
 
-        // ...
         if (user is not null)
         {
-            Console.WriteLine($"Update accepted.");
+            Console.WriteLine($"accepted.");
             Console.WriteLine("Write Your New: \"Email;Password\".");
             Console.WriteLine("Example: \"mynewmail@mail.com;NewPassword1$\".");
-            var commaseparatedstrNew = Prompt("Write a CommaSeparatedString: ");
-            if (commaseparatedstrNew is null)
-            {
-                Console.WriteLine("CommaSeparatedString not readable. Operation cancelled.");
-                return;
-            }
-            var searchNew = SimpleParseCommaSeparatedString(commaseparatedstr);
+
+            (string?, string?) searchNew = (null, null);
+            try { searchNew = Search(); }
+            catch (Exception ex) { Console.WriteLine(ex.Message); }
+            if (searchNew.Item1 is null || searchNew.Item2 is null) return;
 
             User? userNew = null;
-            try
-            {
-                userNew = _userRepository.GetByEmail(search.Item1, search.Item2);
-            }
-            catch (EntityNotFoundException ex)
-            {
-                Console.WriteLine($"Processing... ");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Update cancelled, {ex.Message}.");
-                return;
-            }
+            try { userNew = _userRepo.GetByEmail(searchNew.Item1, searchNew.Item2); }
+            catch (EntityNotFoundException ex) { Console.Write($"Processing... "); }
+            catch (Exception ex) { Console.WriteLine($"Update cancelled, {ex.Message}."); return; }
 
             if (userNew is null)
             {
-                Console.WriteLine($"Update accepted.");
-                var result = _userRepository.UpdateUser(new User(user.Id, searchNew.Item1, searchNew.Item2, user.Date));
-                try
-                {
-                    Console.WriteLine($"Update completed, Id={result}");
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Update cancelled, {ex.Message}");
-                }
+                Console.WriteLine($"accepted.");
+                try{ var result = _userRepo.UpdateUser(new User(user.Id, searchNew.Item1, searchNew.Item2, user.Date));
+                     Console.WriteLine($"Update completed, Id={result}"); }
+                catch (Exception ex) { Console.WriteLine($"Update cancelled, {ex.Message}"); }
             }
-            else
-            {
-                Console.WriteLine($"Update cancelled.");
-            }
+            else { Console.WriteLine($"cancelled."); }
         }
-        else
-        {
-            Console.WriteLine($"Update cancelled.");
-        }
+        else { Console.WriteLine($"cancelled."); }
     }
 
-    private void DeleteUser()
+    public void DeleteUser()
     {
         Console.WriteLine("Write Your: \"Email;Password\".");
         Console.WriteLine("Example: \"mymail@mail.com;Password1$\".");
 
-        var commaseparatedstr = Prompt("Write a CommaSeparatedString: ");
-        if (commaseparatedstr is null)
-        {
-            Console.WriteLine("CommaSeparatedString not readable. Operation cancelled.");
-            return;
-        }
-        var search = SimpleParseCommaSeparatedString(commaseparatedstr);
+        (string?, string?) search = (null, null);
+        try { search = Search(); }
+        catch (Exception ex) { Console.WriteLine(ex.Message); }
+        if (search.Item1 is null || search.Item2 is null) return;
 
         User? user = null;
-        try
-        {
-            user = _userRepository.GetByEmail(search.Item1, search.Item2);
-        }
-        catch (EntityNotFoundException ex)
-        {
-            Console.Write($"Processing... ");
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Delete cancelled, {ex.Message}");
-            return;
-        }
+        try { user = _userRepo.GetByEmail(search.Item1, search.Item2); }
+        catch (EntityNotFoundException ex) { Console.Write($"Processing... "); }
+        catch (Exception ex) { Console.WriteLine($"Delete cancelled, {ex.Message}"); return; }
 
-        // ... 
         if (user is not null)
         {
-            Console.WriteLine($"Delete accepted.");
-            var result = _userRepository.Delete(user);
-            try
-            {
-                Console.WriteLine($"Insert completed, Id={result}");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Insert cancelled, {ex.Message}");
-            }
+            Console.WriteLine($"accepted.");
+            try { var result = _userRepo.Delete(user);
+                  Console.WriteLine($"Insert completed, Id={result}"); }
+            catch (Exception ex) { Console.WriteLine($"Insert cancelled, {ex.Message}"); }
         }
-        else
-        {
-            Console.WriteLine($"Insert cancelled.");
-        }
+        else { Console.WriteLine($"Insert cancelled."); }
     }
 
-    private void SearchUserById()
+    public void SearchUserById()
     {
         Console.WriteLine("Write Your: \"Id;Password\".");
         Console.WriteLine("Example: \"2;Password1$\".");
-        var commaseparatedstr = Prompt("Read CommaSeparatedString: ");
-        if (commaseparatedstr is null)
-        {
-            Console.WriteLine("CommaSeparatedString not readable. Operation cancelled.");
-            return;
-        }
-        var search = SimpleParseCommaSeparatedString(commaseparatedstr);
+
+        (string?, string?) search = (null, null);
+        try { search = Search(); }
+        catch (Exception ex) { Console.WriteLine(ex.Message); }
+        if (search.Item1 is null || search.Item2 is null) return;
+
+        try { var user = _userRepo.GetById(int.Parse(search.Item1), search.Item2);
+              Console.WriteLine($"Found: {user}"); }
+        catch (Exception ex) { Console.WriteLine($"Not Found: {ex.Message}"); }
+    }
+
+    public void SearchUserByEmail()
+    {
+        Console.WriteLine("Write Your: \"Email;Password\".");
+        Console.WriteLine("Example: \"mymail@mail.com;Password1$\".");
+
+        (string?, string?) search = (null, null);
+        try { search = Search(); }
+        catch (Exception ex) { Console.WriteLine(ex.Message); }
+        if (search.Item1 is null || search.Item2 is null) return;
 
         try
         {
-            var user = _userRepository.GetById(int.Parse(search.Item1), search.Item2);
+            var user = _userRepo.GetByEmail(search.Item1, search.Item2);
             Console.WriteLine($"User found: {user}");
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"User not found: {ex.Message}");
+            Console.WriteLine($"User not Found: {ex.Message}");
         }
     }
 
-    private void SearchUserByEmail()
+    public void WritingUserData() 
     {
-        Console.WriteLine("Write Your: \"Id;Password\".");
+        Console.WriteLine("Write Your: \"Email;Password\".");
         Console.WriteLine("Example: \"mymail@mail.com;Password1$\".");
-        var commaseparatedstr = Prompt("Read CommaSeparatedString: ");
-        if (commaseparatedstr is null)
-        {
-            Console.WriteLine("CommaSeparatedString not readable. Operation cancelled.");
-            return;
-        }
-        var search = SimpleParseCommaSeparatedString(commaseparatedstr);
 
-        try
-        {
-            var user = _userRepository.GetByEmail(search.Item1, search.Item2);
-            Console.WriteLine($"User found: {user}");
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"User not found: {ex.Message}");
-        }
-    }
-
-    private void WritingUserData() 
-    {
-        Console.WriteLine("Write Your: \"Id;Password\".");
-        Console.WriteLine("Example: \"mymail@mail.com;Password1$\".");
-        var commaseparatedstr = Prompt("Read CommaSeparatedString: ");
-        if (commaseparatedstr is null)
-        {
-            Console.WriteLine("CommaSeparatedString not readable. Operation cancelled.");
-            return;
-        }
-        var search = SimpleParseCommaSeparatedString(commaseparatedstr);
+        (string?, string?) search = (null, null);
+        try { search = Search(); }
+        catch (Exception ex) { Console.WriteLine(ex.Message); } 
+	    if (search.Item1 is null || search.Item2 is null) return;
 
         User? user = null;
-        try
-        {
-            user = _userRepository.GetByEmail(search.Item1, search.Item2);
-        }
-        catch (EntityNotFoundException ex)
-        {
-            Console.Write($"Processing... ");
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Writing cancelled, {ex.Message}");
-            return;
-        }
+        try { user = _userRepo.GetByEmail(search.Item1, search.Item2); }
+        catch (EntityNotFoundException ex) { Console.Write($"Processing... "); }
+        catch (Exception ex) { Console.WriteLine($"Writing cancelled, {ex.Message}"); return; }
 
         if (user is not null)
         {
-            Console.WriteLine($"Writing accepted.");
-            if ((new FileWriterUserCSV(user)).FileWrite())
-            {
-                Console.WriteLine($"Writing completed.");
-            }
-            else 
-	        {
-                Console.WriteLine($"Writing cancelled.");
-            }
+            Console.WriteLine($"accepted.");
+            if ((new FileWriterUserCSV(user)).FileWrite()) { Console.WriteLine($"Writing completed."); }
+            else { Console.WriteLine($"Writing cancelled."); }
         }
-        else
-        {
-            Console.WriteLine($"Writing cancelled.");
-        }
+        else { Console.WriteLine($"Writing cancelled."); }
     }
 
-
-    private static string? Prompt(string text)
+    private static (string, string) Search() 
     {
-        Console.Write(text);
-        var str = Console.ReadLine();
-
-        if (str is not null)
+        Console.Write("Read CommaSeparatedString: ");
+        var commaseparatedstr = Console.ReadLine();
+        if (commaseparatedstr is null)
         {
-            Console.WriteLine("Text not null.");
-            return str;
+            throw new Exception("CommaSeparatedString not readable. Operation cancelled.");
         }
-        else
-        {
-            Console.WriteLine("Text null.");
-            return null;
-        }
-    }
-
-    private static (string, string) SimpleParseCommaSeparatedString(string commaseparatedstr)
-    {
         var split = commaseparatedstr.Split(';') ?? Array.Empty<string>();
         if (split.Length != 2)
         {
-            throw new Exception("Error.");
+            throw new Exception("CommaSeparatedString is readable, but not correct. Operation cancelled.");
         }
         return (split[0], split[1]);
     }

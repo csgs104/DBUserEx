@@ -1,8 +1,7 @@
 ﻿using System;
 
-namespace StringCheckerLibrary;
-
 // 0
+namespace StringCheckerLibrary;
 
 public interface IStringChecker
 {

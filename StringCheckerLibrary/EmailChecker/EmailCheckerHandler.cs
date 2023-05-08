@@ -2,6 +2,7 @@
 
 using StringCheckerLibrary;
 
+
 namespace StringCheckerLibrary.EmailChecker;
 
 public class EmailCheckerHandler : StringCheckerHandler

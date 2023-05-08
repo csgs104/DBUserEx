@@ -13,6 +13,9 @@ using FileWriterLibrary;
 using FileWriterLibrary.FileWriters;
 using DBUserLibrary.Repositories.Abstract;
 
+using StringCheckerLibrary;
+using StringCheckerLibrary.EmailChecker;
+using StringCheckerLibrary.PasswordChecker;
 
 /*
 
@@ -48,33 +51,35 @@ var module = host.Services.GetService<IModule>()
 var menu = host.Services.GetService<Menu>()
             ?? throw new Exception("Menu not Found.");
 
+/*
 Console.WriteLine("TEST for DB.");
-
 Console.WriteLine(db.Initialize());
 
 Console.WriteLine("TEST for USERSERVICE.");
-
 Console.WriteLine("Get by: Id and Password.");
-users.GetById(1, "Password1$");
-users.GetById(2, "Password1$");
-users.GetById(3, "Password1$");
-
+Console.WriteLine(users.GetById(1, "Password1$"));
 Console.WriteLine("Get by: Email and Password.");
-users.GetByEmail("pippipippi@mail.com", "Password1$");
-users.GetByEmail("pippapippa@mail.com", "Password1$");
-users.GetByEmail("pippopippo@mail.com", "Password1$");
+Console.WriteLine(users.GetByEmail("pippipippi@mail.com", "Password1$"));
 
-/*
+
 Console.WriteLine("Isert");
 users?.Insert(new User("pappapappa@mail.com", "Password1$"));
-users?.Insert(new User("pappapappa@mail.com", "Password1$"));
-users?.Insert(new User("poppopoppo@mail.com", "Password1$"));
-users?.Insert(new User("poppopoppo@mail.com", "Password1$"));
 */
 
-User user = new User(2001, "poppopoppo@mail.com", "Password1$");
+Console.WriteLine("TEST for StringChecker.");
+var pch = (new PasswordCheckerHandler()).Check("dPg777$");
+var ech = (new EmailCheckerHandler()).Check("dPg777$@mail.com");
+Console.WriteLine($"{pch.Item1}-{pch.Item2}");
+Console.WriteLine($"{ech.Item1}-{ech.Item2}");
+
+/*
+Console.WriteLine("TEST for USERTOCSV.");
+User user = new User(20, "poppopoppo@mail.com", "Password1$");
 Console.WriteLine((new FileWriterUserCSV(user)).FileWrite());
 
-menu.Start();
+Console.WriteLine("TEST for MENU.");
+
+// menu.Start();
+*/
 
 Console.WriteLine("Bye.");

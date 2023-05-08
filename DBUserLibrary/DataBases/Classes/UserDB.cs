@@ -1,13 +1,16 @@
 ﻿using System;
+
 using Microsoft.Data.SqlClient;
 
 using DBUserLibrary.DataBases.Abstract;
+
 
 namespace DBUserLibrary.DataBases.Classes;
 
 public class UserDB : BaseDB
 {
-    public UserDB(string connection) : base(connection)
+    public UserDB(string connection)
+	: base(connection)
     { }
 
     public override string CreateDataBase() =>  @"

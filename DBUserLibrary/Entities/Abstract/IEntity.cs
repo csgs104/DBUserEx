@@ -1,5 +1,6 @@
 ﻿using System;
 
+
 namespace DBUserLibrary.Entities.Abstract;
 
 public interface IEntity

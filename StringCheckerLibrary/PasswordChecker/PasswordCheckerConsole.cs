@@ -1,5 +1,6 @@
 ﻿using System;
 
+
 namespace StringCheckerLibrary.PasswordChecker;
 
 public class PasswordCheckerConsole : StringCheckerConsole

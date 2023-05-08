@@ -1,27 +1,26 @@
 ﻿using System;
 
-namespace StringCheckerLibrary;
-
 // 1
+namespace StringCheckerLibrary;
 
 public abstract class StringChecker : IStringChecker
 {
-    protected IStringChecker? _successor;
+    private IStringChecker? _successor;
 
-    public StringChecker()
-    {
-        _successor = null;
-    }
+    protected IStringChecker? Successor { get => _successor; }
 
-    public StringChecker(IStringChecker? successor)
+
+    public StringChecker(IStringChecker? successor = default)
     {
         _successor = successor;
     }
+
 
     public void SetSuccessor(IStringChecker? successor)
     {
         _successor = successor;
     }
+
 
     public abstract (bool, string) Check(string str);
 }

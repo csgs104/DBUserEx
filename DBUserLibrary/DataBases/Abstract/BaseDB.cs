@@ -1,5 +1,7 @@
 ﻿using System;
+
 using Microsoft.Data.SqlClient;
+
 
 namespace DBUserLibrary.DataBases.Abstract;
 
@@ -9,10 +11,12 @@ public abstract class BaseDB : IDataBase
 
     public string Connection { get => _connection; }
 
+
     public BaseDB(string connection)
     {
         _connection = connection;
     }
+
 
     public abstract string CreateDataBase();
 
@@ -36,7 +40,7 @@ public abstract class BaseDB : IDataBase
         }
         catch (SqlException ex)
         {
-            Console.WriteLine(ex.Message);
+            // Console.WriteLine(ex.Message);
             return false;
         }
     }

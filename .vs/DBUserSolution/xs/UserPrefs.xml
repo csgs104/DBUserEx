@@ -3,17 +3,46 @@
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.ItemProperties.DBUserApp PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="DBUserApp/Program.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="DBUserApp/Services/Modules/Abstracts/IModule.cs">
     <Files>
-      <File FileName="DBUserApp/Program.cs" Line="63" Column="59" />
+      <File FileName="DBUserApp/Program.cs" Line="51" Column="44" />
+      <File FileName="DBUserApp/Menu/Modules/IMenu.cs" Line="5" Column="25" />
+      <File FileName="DBUserApp/Menu/Modules/Menu.cs" Line="18" Column="1" />
+      <File FileName="DBUserApp/Menu/Modules/ExitModule.cs" Line="14" Column="1" />
+      <File FileName="DBUserApp/Menu/Modules/UserModule.cs" Line="24" Column="5" />
+      <File FileName="DBUserApp/Menu/Modules/Operations.cs" Line="15" Column="38" />
+      <File FileName="DBUserApp/Services/Classes/UserService.cs" Line="21" Column="5" />
+      <File FileName="DBUserLibrary/Repositories/Classes/UserRepository.cs" Line="52" Column="1" />
+      <File FileName="DBUserLibrary/Repositories/Abstract/EntityRepository.cs" Line="106" Column="2" />
+      <File FileName="DBUserApp/IoC/Startup.cs" Line="48" Column="2" />
+      <File FileName="DBUserApp/Writers/FileWriterUserCSV.cs" Line="1" Column="1" />
+      <File FileName="DBUserApp/Services/Abstract/IUserService.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="DBUserSolution" expanded="True" />
+          <Node name="DBUserSolution" expanded="True">
+            <Node name="DBUserApp" expanded="True">
+              <Node name="IoC" expanded="True" />
+              <Node name="Services" expanded="True">
+                <Node name="Modules" expanded="True">
+                  <Node name="Abstracts" expanded="True" />
+                  <Node name="Classes" expanded="True" />
+                </Node>
+              </Node>
+              <Node name="UserToCSV" expanded="True" />
+            </Node>
+            <Node name="DBUserLibrary" expanded="True">
+              <Node name="Entities" expanded="True">
+                <Node name="Abstract" expanded="True" />
+                <Node name="Classes" expanded="True" />
+              </Node>
+              <Node name="Repositories" expanded="True">
+                <Node name="Abstract" expanded="True" />
+                <Node name="Classes" expanded="True" />
+              </Node>
+            </Node>
+          </Node>
         </State>
       </Pad>
       <Pad Id="MonoDevelop.Debugger.WatchPad">
@@ -21,4 +50,7 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.DBUserApp PreferredExecutionTarget="MonoDevelop.Default" />
+  <MultiItemStartupConfigurations />
 </Properties>

@@ -13,6 +13,8 @@ using DBUserApp.Services.Abstract;
 using DBUserApp.Services.Classes;
 using DBUserApp.Writers;
 
+using DBUserApp.Menu.Modules;
+
 
 namespace DBUserApp.IoC;
 
@@ -39,7 +41,8 @@ public static class Startup
                     var cs = context.Configuration["ConnectionString"] ?? string.Empty;
                     service.AddSingleton<IDataBase>(_ => new UserDB(cs));
                     service.AddSingleton<IUserService>(_ => new UserService(cs));
-                    // ... 
-                });
+                    service.AddSingleton<Menu.Modules.Menu>(_ => new Menu.Modules.Menu(cs));
+		            // ... 
+            });
     }
 }

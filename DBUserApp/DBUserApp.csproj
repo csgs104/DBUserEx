@@ -12,17 +12,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="IoC\" />
-    <None Remove="Services\" />
-    <None Remove="Services\Abstract\" />
-    <None Remove="Services\Classes\" />
     <None Remove="UserToCSV\" />
+    <None Remove="Menu\Modules\" />
+    <None Remove="Menus\Modules\Classes\" />
+    <None Remove="Menus\Modules\Abstracts\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="IoC\" />
-    <Folder Include="Services\" />
-    <Folder Include="Services\Abstract\" />
-    <Folder Include="Services\Classes\" />
     <Folder Include="UserToCSV\" />
+    <Folder Include="Services\Modules\" />
+    <Folder Include="Services\Modules\Classes\" />
+    <Folder Include="Services\Modules\Abstract\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FileWriterLibrary\FileWriterLibrary.csproj" />

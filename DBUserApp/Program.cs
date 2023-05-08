@@ -3,6 +3,7 @@
 using DBUserApp.IoC;
 using DBUserApp.Services.Abstract;
 using DBUserApp.Writers;
+using DBUserApp.Menu.Modules;
 
 using DBUserLibrary.DataBases.Abstract;
 using DBUserLibrary.DataBases.Classes;
@@ -10,6 +11,7 @@ using DBUserLibrary.Entities.Classes;
 
 using FileWriterLibrary;
 using FileWriterLibrary.FileWriters;
+
 
 /*
 
@@ -39,6 +41,9 @@ var db = host.Services.GetService<IDataBase>()
 var users = host.Services.GetService<IUserService>() 
             ?? throw new Exception("UserService not Found.");
 
+var menu = host.Services.GetService<IUserService>()
+            ?? throw new Exception("UserService not Found.");
+
 Console.WriteLine("TEST for DB.");
 
 Console.WriteLine(db.Initialize());
@@ -65,5 +70,7 @@ users?.Insert(new User("poppopoppo@mail.com", "Password1$"));
 
 User user = new User(2001, "poppopoppo@mail.com", "Password1$");
 Console.WriteLine((new FileWriterUserCSV(user)).FileWrite());
+
+new Menu().Start();
 
 Console.WriteLine("Bye.");

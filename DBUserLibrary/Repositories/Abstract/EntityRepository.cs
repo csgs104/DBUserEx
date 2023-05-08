@@ -5,6 +5,7 @@ using System.Data.SqlTypes;
 using Microsoft.Data.SqlClient;
 
 using DBUserLibrary.Entities.Abstract;
+using DBUserLibrary.Entities.Classes;
 
 namespace DBUserLibrary.Repositories.Abstract;
 
@@ -37,7 +38,7 @@ public abstract class EntityRepository : BaseRepository, IEntityRepository
         }
 
         return entity 
-	           ?? throw new NullReferenceException("Entity Not Found.");
+	           ?? throw new EntityNotFoundException("Entity Not Found.");
     }
 
     protected abstract Entity ReadEntity(SqlDataReader reader);
@@ -97,4 +98,9 @@ public abstract class EntityRepository : BaseRepository, IEntityRepository
                ? entity.Id
                : throw new Exception($"{nameof(Delete)} Failed.");
     }
+}
+
+public class EntityNotFoundException : Exception
+{
+    public EntityNotFoundException(string message) : base(message) { }
 }

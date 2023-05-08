@@ -46,7 +46,7 @@ public class User : Entity
 
     public override string ToCommaSeparatedString()
     { 
-	    return $"{base.ToCommaSeparatedString()}, {Email}, {Password}, {Date.ToString("yyyy-MM-dd")}";
+	    return $"{base.ToCommaSeparatedString()};{Email};{Password};{Date.ToString("yyyy-MM-dd")}";
     }
 
     public override Dictionary<string, object> ToDictionary()

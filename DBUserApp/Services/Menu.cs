@@ -1,6 +1,12 @@
 ﻿using System;
 
-namespace DBUserApp.Menu.Modules;
+using DBUserApp.Services.Modules;
+using DBUserApp.Services.Modules.Abstract;
+using DBUserApp.Services.Modules.Classes;
+using DBUserApp.Services.Modules.Exceptions;
+
+
+namespace DBUserApp.Services;
 
 public class Menu
 {
@@ -11,10 +17,8 @@ public class Menu
     public Menu(IList<IModule> modules) 
     {
         _modules = modules;
+        _modules.Add(new ExitModule());
     }
-
-    public Menu(string cn) : this(new List<IModule>() { new UserModule(cn) })
-    { }
 
 
     public void Start()

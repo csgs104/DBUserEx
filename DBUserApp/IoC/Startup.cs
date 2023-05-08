@@ -5,16 +5,16 @@ using Microsoft.Extensions.Hosting;
 
 using DBUserLibrary.DataBases.Abstract;
 using DBUserLibrary.DataBases.Classes;
+using DBUserLibrary.Repositories.Abstract;
+using DBUserLibrary.Repositories.Classes;
 
 using FileWriterLibrary;
 using FileWriterLibrary.FileWriters;
 
-using DBUserApp.Services.Abstract;
-using DBUserApp.Services.Classes;
+using DBUserApp.Services.Modules.Abstract;
+using DBUserApp.Services.Modules.Classes;
+using DBUserApp.Services;
 using DBUserApp.Writers;
-
-using DBUserApp.Menu.Modules;
-
 
 namespace DBUserApp.IoC;
 
@@ -40,9 +40,10 @@ public static class Startup
             => {
                     var cs = context.Configuration["ConnectionString"] ?? string.Empty;
                     service.AddSingleton<IDataBase>(_ => new UserDB(cs));
-                    service.AddSingleton<IUserService>(_ => new UserService(cs));
-                    service.AddSingleton<Menu.Modules.Menu>(_ => new Menu.Modules.Menu(cs));
-		            // ... 
+                    service.AddSingleton<IUserRepository>(_ => new UserRepository(cs));
+                    service.AddSingleton<IModule>(_ => new UserModule(new UserRepository(cs)));
+                    service.AddSingleton<Menu>(_ => new Menu(new List<IModule>() { new UserModule(new UserRepository(cs)) } ));
+                    // ... 
             });
     }
 }

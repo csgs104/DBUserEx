@@ -11,6 +11,7 @@ using StringCheckerLibrary;
 using StringCheckerLibrary.EmailChecker;
 using StringCheckerLibrary.PasswordChecker;
 
+using DBUserLibrary.Repositories.Exceptions;
 
 namespace DBUserLibrary.Repositories.Classes;
 

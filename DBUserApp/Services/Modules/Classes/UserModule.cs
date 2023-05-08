@@ -1,14 +1,20 @@
 ﻿using System;
-
-using DBUserLibrary.Repositories.Abstract;
-using DBUserLibrary.Repositories.Classes;
-using Microsoft.VisualBasic;
-using System.Numerics;
-using DBUserLibrary.Entities.Classes;
 using System.Collections.Generic;
+
 using DBUserApp.Writers;
 
-namespace DBUserApp.Menu.Modules;
+using DBUserLibrary.Entities.Abstract;
+using DBUserLibrary.Entities.Classes;
+using DBUserLibrary.Repositories.Abstract;
+using DBUserLibrary.Repositories.Classes;
+using DBUserLibrary.Repositories.Exceptions;
+
+using DBUserApp.Services.Modules;
+using DBUserApp.Services.Modules.Abstract;
+using DBUserApp.Services.Modules.Exceptions;
+
+
+namespace DBUserApp.Services.Modules.Classes;
 
 public class UserModule : IModule
 {
@@ -19,22 +25,19 @@ public class UserModule : IModule
         _userRepository = userRepository;
     }
 
-    public UserModule(string cn)
-    : this(new UserRepository(cn))
-    { }
-
     public string Name => "UserMenu";
     public string Command => "User";
 
     private const string SearchById = "SBI";
     private const string SearchByEmail = "SBE";
-    private const string WriteUserFile = "WUF";
+    private const string WriteUserData = "WUF";
 
     public void Run()
     {
         var operations = Options.Operations();
         operations.Add(SearchById, "Search by Id");
-        operations.Add(SearchById, "Search by Email");
+        operations.Add(SearchByEmail, "Search by Email");
+        operations.Add(WriteUserData, "Write User Data");
 
         while (true)
         {
@@ -66,7 +69,7 @@ public class UserModule : IModule
             case Options.DELETE: DeleteUser(); break;
             case SearchById: SearchUserById(); break;
             case SearchByEmail: SearchUserByEmail(); break;
-            case WriteUserFile: WritingUserFile(); break;
+            case WriteUserData: WritingUserData(); break;
             case Options.EXIT: throw new ExitException($"Exit From {Name}.");
             default: Console.WriteLine($"Choice Not Valid: {choice}."); break;
         }
@@ -295,7 +298,7 @@ public class UserModule : IModule
         }
     }
 
-    private void WritingUserFile() 
+    private void WritingUserData() 
     {
         Console.WriteLine("Write Your: \"Id;Password\".");
         Console.WriteLine("Example: \"mymail@mail.com;Password1$\".");

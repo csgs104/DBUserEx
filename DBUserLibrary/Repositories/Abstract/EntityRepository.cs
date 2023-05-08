@@ -7,6 +7,8 @@ using Microsoft.Data.SqlClient;
 using DBUserLibrary.Entities.Abstract;
 using DBUserLibrary.Entities.Classes;
 
+using DBUserLibrary.Repositories.Exceptions;
+
 namespace DBUserLibrary.Repositories.Abstract;
 
 public abstract class EntityRepository : BaseRepository, IEntityRepository
@@ -98,9 +100,4 @@ public abstract class EntityRepository : BaseRepository, IEntityRepository
                ? entity.Id
                : throw new Exception($"{nameof(Delete)} Failed.");
     }
-}
-
-public class EntityNotFoundException : Exception
-{
-    public EntityNotFoundException(string message) : base(message) { }
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DBUserApp.Menu.Modules;
+namespace DBUserApp.Services.Modules.Abstract;
 
 public interface IModule
 {
@@ -9,4 +9,3 @@ public interface IModule
 
     public void Run();
 }
-

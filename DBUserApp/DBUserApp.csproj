@@ -16,6 +16,7 @@
     <None Remove="Menu\Modules\" />
     <None Remove="Menus\Modules\Classes\" />
     <None Remove="Menus\Modules\Abstracts\" />
+    <None Remove="Services\Modules\Exceptions\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="IoC\" />
@@ -23,6 +24,7 @@
     <Folder Include="Services\Modules\" />
     <Folder Include="Services\Modules\Classes\" />
     <Folder Include="Services\Modules\Abstract\" />
+    <Folder Include="Services\Modules\Exceptions\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FileWriterLibrary\FileWriterLibrary.csproj" />

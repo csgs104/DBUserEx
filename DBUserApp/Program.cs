@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
 using DBUserApp.IoC;
-using DBUserApp.Services.Abstract;
 using DBUserApp.Writers;
-using DBUserApp.Menu.Modules;
+using DBUserApp.Services;
+using DBUserApp.Services.Modules.Abstract;
 
 using DBUserLibrary.DataBases.Abstract;
 using DBUserLibrary.DataBases.Classes;
@@ -11,6 +11,7 @@ using DBUserLibrary.Entities.Classes;
 
 using FileWriterLibrary;
 using FileWriterLibrary.FileWriters;
+using DBUserLibrary.Repositories.Abstract;
 
 
 /*
@@ -38,11 +39,14 @@ var host = start.Build()
            ?? throw new Exception("Host Not Found.");
 var db = host.Services.GetService<IDataBase>() 
          ?? throw new Exception("DataBase not Found.");
-var users = host.Services.GetService<IUserService>() 
-            ?? throw new Exception("UserService not Found.");
+var users = host.Services.GetService<IUserRepository>() 
+            ?? throw new Exception("UserRepository not Found.");
 
-var menu = host.Services.GetService<IUserService>()
-            ?? throw new Exception("UserService not Found.");
+var module = host.Services.GetService<IModule>()
+            ?? throw new Exception("UserModule not Found.");
+
+var menu = host.Services.GetService<Menu>()
+            ?? throw new Exception("Menu not Found.");
 
 Console.WriteLine("TEST for DB.");
 
@@ -71,6 +75,6 @@ users?.Insert(new User("poppopoppo@mail.com", "Password1$"));
 User user = new User(2001, "poppopoppo@mail.com", "Password1$");
 Console.WriteLine((new FileWriterUserCSV(user)).FileWrite());
 
-new Menu().Start();
+menu.Start();
 
 Console.WriteLine("Bye.");

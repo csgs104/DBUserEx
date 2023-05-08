@@ -12,6 +12,7 @@
     <None Remove="Entities\Interfaces\" />
     <None Remove="Entities\Classes\" />
     <None Remove="Repositories\Classes\" />
+    <None Remove="Repositories\Exceptions\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\" />
@@ -19,6 +20,7 @@
     <Folder Include="Entities\Abstract\" />
     <Folder Include="Entities\Classes\" />
     <Folder Include="Repositories\Classes\" />
+    <Folder Include="Repositories\Exceptions\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.1" />

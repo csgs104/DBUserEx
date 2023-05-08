@@ -1,5 +1,6 @@
 ﻿using System;
-namespace DBUserApp.Menu.Modules;
+
+namespace DBUserApp.Services.Modules;
 
 public static class Options
 {
@@ -16,7 +17,6 @@ public static class Options
         operations.Add(INSERT, "Insert");
         operations.Add(UPDATE, "Update");
         operations.Add(DELETE, "Delete");
-        operations.Add(SELECT, "Select");
         return operations;
     }
 }

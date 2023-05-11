@@ -11,18 +11,12 @@ public class FileWriterUserCSV : FileWriterCSV
 {
     public const string header = $"matricola;username;password;data";
 
-    private User _user = null!;
-    
-    public void SetUser(User user) => _user = user;
-
 
     public FileWriterUserCSV(User user)
     : base(DestinationPath("UserToCSV"),
            $"{user.Id.ToString()}-{user.Date.ToString("yyyy-MM-dd")}",
            $"{header}{Environment.NewLine}{user.ToCommaSeparatedString()}") 
-    {
-        _user = user;
-    }
+    { }
 
 
     private static string DestinationPath(string directory)

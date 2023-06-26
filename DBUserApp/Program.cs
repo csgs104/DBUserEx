@@ -1,21 +1,21 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
 using DBUserApp.IoC;
-using DBUserApp.Writers;
+// using DBUserApp.Writers;
 using DBUserApp.Services;
-using DBUserApp.Services.Modules.Abstract;
+// using DBUserApp.Services.Modules.Abstract;
 
 using DBUserLibrary.DataBases.Abstract;
-using DBUserLibrary.DataBases.Classes;
-using DBUserLibrary.Entities.Classes;
+// using DBUserLibrary.DataBases.Classes;
+// using DBUserLibrary.Entities.Classes;
 
-using FileWriterLibrary;
-using FileWriterLibrary.FileWriters;
-using DBUserLibrary.Repositories.Abstract;
+// using FileWriterLibrary;
+// using FileWriterLibrary.FileWriters;
+// using DBUserLibrary.Repositories.Abstract;
 
-using StringCheckerLibrary;
-using StringCheckerLibrary.EmailChecker;
-using StringCheckerLibrary.PasswordChecker;
+// using StringCheckerLibrary;
+// using StringCheckerLibrary.EmailChecker;
+// using StringCheckerLibrary.PasswordChecker;
 
 /*
 Gestore Credenziali

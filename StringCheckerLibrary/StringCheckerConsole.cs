@@ -1,8 +1,6 @@
-﻿using System;
+﻿namespace StringCheckerLibrary;
 
 // OPTIONAL
-namespace StringCheckerLibrary;
-
 public abstract class StringCheckerConsole
 {
     protected abstract StringCheckerHandler HandlerChecker();

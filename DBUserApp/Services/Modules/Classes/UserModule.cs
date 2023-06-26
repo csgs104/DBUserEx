@@ -1,32 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
+﻿namespace DBUserApp.Services.Modules.Classes;
 
-using DBUserLibrary.Entities.Abstract;
 using DBUserLibrary.Entities.Classes;
 using DBUserLibrary.Repositories.Abstract;
-using DBUserLibrary.Repositories.Classes;
 using DBUserLibrary.Repositories.Exceptions;
-
-using FileWriterLibrary;
 
 using DBUserApp.Writers;
 using DBUserApp.Services.Modules;
 using DBUserApp.Services.Modules.Abstract;
 using DBUserApp.Services.Modules.Exceptions;
 
-
-namespace DBUserApp.Services.Modules.Classes;
-
 public class UserModule : IUserModule
 {
     private readonly IUserRepository _userRepo;
-
 
     public UserModule(IUserRepository userRepo)
     {
         _userRepo = userRepo;
     }
-
 
     public string Name => "UserMenu";
     public string Command => "User";
@@ -34,7 +24,6 @@ public class UserModule : IUserModule
     private const string SearchById = "SBI";
     private const string SearchByEmail = "SBE";
     private const string WriteUserData = "WUF";
-
 
     public void Run()
     {
@@ -68,7 +57,6 @@ public class UserModule : IUserModule
             }
         }
     }
-
 
     private void ManageChoice(string choice)
     {

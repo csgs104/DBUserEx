@@ -1,9 +1,6 @@
-﻿using System;
-using System.IO;
+﻿namespace FileWriterLibrary;
 
 // 2
-namespace FileWriterLibrary;
-
 public class BaseFileWriter : FileWriter
 {
 	private readonly string _name = null!;
@@ -11,7 +8,6 @@ public class BaseFileWriter : FileWriter
 
     public string Name { get => _name; }
     public string Content { get => _content; }
-
 
     public BaseFileWriter(string basepath, string name, string content) 
 	: base(basepath)
@@ -26,7 +22,6 @@ public class BaseFileWriter : FileWriter
 		_name = name;
         _content = content;
     }
-
 
 	public virtual string FilePath()
 	{

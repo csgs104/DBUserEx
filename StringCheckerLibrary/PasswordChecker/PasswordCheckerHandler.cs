@@ -1,9 +1,4 @@
-﻿using System;
-
-using StringCheckerLibrary;
-
-
-namespace StringCheckerLibrary.PasswordChecker;
+﻿namespace StringCheckerLibrary.PasswordChecker;
 
 public class PasswordCheckerHandler : StringCheckerHandler
 {

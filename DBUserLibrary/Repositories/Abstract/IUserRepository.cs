@@ -1,9 +1,6 @@
-﻿using System;
+﻿namespace DBUserLibrary.Repositories.Abstract;
 
 using DBUserLibrary.Entities.Classes;
-
-
-namespace DBUserLibrary.Repositories.Abstract;
 
 public interface IUserRepository : IEntityRepository
 {

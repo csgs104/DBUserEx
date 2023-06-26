@@ -1,15 +1,11 @@
-﻿using System;
-using System.IO;
+﻿namespace FileWriterLibrary;
 
 // 1
-namespace FileWriterLibrary;
-
 public abstract class FileWriter : IFileWriter
 {
 	private readonly string _basepath = null!;
 
 	public string BasePath { get => _basepath; }
-
 
 	public FileWriter(string basepath)
 	{

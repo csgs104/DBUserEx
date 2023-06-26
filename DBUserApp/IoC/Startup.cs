@@ -1,5 +1,5 @@
-﻿using System;
-using Microsoft.Extensions.Configuration;
+﻿namespace DBUserApp.IoC;
+
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -8,20 +8,12 @@ using DBUserLibrary.DataBases.Classes;
 using DBUserLibrary.Repositories.Abstract;
 using DBUserLibrary.Repositories.Classes;
 
-using FileWriterLibrary;
-using FileWriterLibrary.FileWriters;
-
-using StringCheckerLibrary;
 using StringCheckerLibrary.EmailChecker;
 using StringCheckerLibrary.PasswordChecker;
 
 using DBUserApp.Services.Modules.Abstract;
 using DBUserApp.Services.Modules.Classes;
 using DBUserApp.Services;
-using DBUserApp.Writers;
-
-
-namespace DBUserApp.IoC;
 
 public static class Startup 
 {

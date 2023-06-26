@@ -1,16 +1,9 @@
-﻿using System;
+﻿namespace DBUserLibrary.Repositories.Abstract;
+
 using System.Data;
-using System.Data.SqlTypes;
-
 using Microsoft.Data.SqlClient;
-
 using DBUserLibrary.Entities.Abstract;
-using DBUserLibrary.Entities.Classes;
-
 using DBUserLibrary.Repositories.Exceptions;
-
-
-namespace DBUserLibrary.Repositories.Abstract;
 
 public abstract class EntityRepository : BaseRepository, IEntityRepository
 {
@@ -22,7 +15,6 @@ public abstract class EntityRepository : BaseRepository, IEntityRepository
     {
         _table = table;
     }
-
 
     protected Entity GetEntity(string cmd, Dictionary<string, object> prms)
     {
@@ -46,7 +38,6 @@ public abstract class EntityRepository : BaseRepository, IEntityRepository
 
     protected abstract Entity ReadEntity(SqlDataReader reader);
 
-
     public virtual int Insert(Entity entity)
     {
         var dic = entity.ToDictionary();
@@ -66,7 +57,6 @@ public abstract class EntityRepository : BaseRepository, IEntityRepository
                : throw new Exception($"{nameof(Insert)} Failed.");
     }
 
-
     public virtual int Update(Entity entity)
     {
         var dic = entity.ToDictionary();
@@ -84,7 +74,6 @@ public abstract class EntityRepository : BaseRepository, IEntityRepository
                ? GetEntity(scmd, prms).Id
                : throw new Exception($"Update Failed.");
     }
-
 
     public virtual int Delete(Entity entity)
     {

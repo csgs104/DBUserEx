@@ -1,7 +1,4 @@
-﻿using System;
-
-
-namespace DBUserApp.Services;
+﻿namespace DBUserApp.Services;
 
 public interface IMenu
 {

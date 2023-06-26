@@ -1,8 +1,6 @@
-﻿using System;
+﻿namespace StringCheckerLibrary;
 
 // 5
-namespace StringCheckerLibrary;
-
 public abstract class StringCheckerHandler : IStringChecker
 {
     protected abstract StringCheckerChain CheckerChain();

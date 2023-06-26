@@ -1,9 +1,4 @@
-﻿using System;
-
-using DBUserLibrary.Entities.Classes;
-
-
-namespace DBUserLibrary.Entities.Abstract;
+﻿namespace DBUserLibrary.Entities.Abstract;
 
 public abstract class Entity : IEntity
 {
@@ -11,17 +6,16 @@ public abstract class Entity : IEntity
 
     public int Id { get => _id; }
 
-
     public Entity(int id = default)
     {
         _id = id;
     }
 
-
     public override string ToString()
     {
         return $"Id:{Id}";
     }
+
     public virtual string ToCommaSeparatedString()
     {
         return $"{Id}";

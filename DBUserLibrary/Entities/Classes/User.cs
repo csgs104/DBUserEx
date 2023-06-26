@@ -1,9 +1,6 @@
-﻿using System;
+﻿namespace DBUserLibrary.Entities.Classes;
 
 using DBUserLibrary.Entities.Abstract;
-
-
-namespace DBUserLibrary.Entities.Classes;
 
 public class User : Entity
 {
@@ -14,7 +11,6 @@ public class User : Entity
     public string Email { get => _email; }
     public string Password { get => _password; }
     public DateTime Date { get => _date; }
-
 
     public User(int id, string email, string password, DateTime date) 
 	: base(id)
@@ -39,7 +35,6 @@ public class User : Entity
     public User(string email, string password)
     : this(email, password, new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day))
     { }
-
 
     public override string ToString()
     { 

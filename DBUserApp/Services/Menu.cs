@@ -1,12 +1,8 @@
-﻿using System;
+﻿namespace DBUserApp.Services;
 
-using DBUserApp.Services.Modules;
-using DBUserApp.Services.Modules.Abstract;
-using DBUserApp.Services.Modules.Classes;
-using DBUserApp.Services.Modules.Exceptions;
-
-
-namespace DBUserApp.Services;
+using Modules.Abstract;
+using Modules.Classes;
+using Modules.Exceptions;
 
 public class Menu : IMenu
 {
@@ -14,13 +10,11 @@ public class Menu : IMenu
 
     public IList<IModule> Modules { get => _modules; }
 
-
     public Menu(IList<IModule> modules) 
     {
         _modules = modules;
         _modules.Add(new ExitModule());
     }
-
 
     public void Start()
     {

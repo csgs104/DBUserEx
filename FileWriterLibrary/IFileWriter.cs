@@ -1,8 +1,6 @@
-﻿using System;
+﻿namespace FileWriterLibrary;
 
 // 0
-namespace FileWriterLibrary;
-
 public interface IFileWriter
 {
     public bool FileWrite();

@@ -1,7 +1,4 @@
-﻿using System;
-
-
-namespace DBUserApp.Services.Modules.Exceptions;
+﻿namespace DBUserApp.Services.Modules.Exceptions;
 
 public class ExitException : Exception
 {

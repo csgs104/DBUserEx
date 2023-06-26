@@ -1,11 +1,6 @@
-﻿using System;
-
-using Microsoft.Data.SqlClient;
+﻿namespace DBUserLibrary.DataBases.Classes;
 
 using DBUserLibrary.DataBases.Abstract;
-
-
-namespace DBUserLibrary.DataBases.Classes;
 
 public class UserDB : BaseDB
 {

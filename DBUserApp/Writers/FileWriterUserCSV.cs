@@ -1,23 +1,17 @@
-﻿using System;
+﻿namespace DBUserApp.Writers;
 
 using FileWriterLibrary.FileWriters;
-
 using DBUserLibrary.Entities.Classes;
-
-
-namespace DBUserApp.Writers;
 
 public class FileWriterUserCSV : FileWriterCSV
 {
     public const string header = $"matricola;username;password;data";
-
 
     public FileWriterUserCSV(User user)
     : base(DestinationPath("UserToCSV"),
            $"{user.Id.ToString()}-{user.Date.ToString("yyyy-MM-dd")}",
            $"{header}{Environment.NewLine}{user.ToCommaSeparatedString()}") 
     { }
-
 
     private static string DestinationPath(string directory)
     {

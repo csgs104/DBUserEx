@@ -1,7 +1,6 @@
-﻿using System;
-using System.Text.RegularExpressions;
+﻿namespace StringCheckerLibrary;
 
-namespace StringCheckerLibrary;
+using System.Text.RegularExpressions;
 
 // 2
 public abstract class BaseStringChecker : StringChecker
@@ -9,7 +8,6 @@ public abstract class BaseStringChecker : StringChecker
     public BaseStringChecker(IStringChecker? successor = default) 
     : base(successor)
     { }
-
 
     public override (bool, string) Check(string str)
     {

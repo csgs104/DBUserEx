@@ -1,15 +1,10 @@
-﻿using System;
+﻿namespace StringCheckerLibrary.EmailChecker;
 
-using StringCheckerLibrary;
-using StringCheckerLibrary.EmailChecker.Checkers;
-
-
-namespace StringCheckerLibrary.EmailChecker;
+using Checkers;
 
 public class EmailCheckerChain : StringCheckerChain
 {
     public EmailCheckerChain() : base() { }
-
 
     public override IList<StringChecker> Checkers()
     {

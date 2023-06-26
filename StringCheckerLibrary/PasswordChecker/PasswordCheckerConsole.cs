@@ -1,7 +1,4 @@
-﻿using System;
-
-
-namespace StringCheckerLibrary.PasswordChecker;
+﻿namespace StringCheckerLibrary.PasswordChecker;
 
 public class PasswordCheckerConsole : StringCheckerConsole
 {

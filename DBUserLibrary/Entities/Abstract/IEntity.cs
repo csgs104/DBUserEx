@@ -1,7 +1,4 @@
-﻿using System;
-
-
-namespace DBUserLibrary.Entities.Abstract;
+﻿namespace DBUserLibrary.Entities.Abstract;
 
 public interface IEntity
 {

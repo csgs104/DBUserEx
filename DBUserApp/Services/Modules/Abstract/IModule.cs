@@ -1,7 +1,4 @@
-﻿using System;
-
-
-namespace DBUserApp.Services.Modules.Abstract;
+﻿namespace DBUserApp.Services.Modules.Abstract;
 
 public interface IModule
 {

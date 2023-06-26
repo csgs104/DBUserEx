@@ -1,10 +1,7 @@
-﻿using System;
+﻿namespace DBUserApp.Services.Modules.Classes;
 
 using DBUserApp.Services.Modules.Abstract;
 using DBUserApp.Services.Modules.Exceptions;
-
-
-namespace DBUserApp.Services.Modules.Classes;
 
 public class ExitModule : IModule
 {

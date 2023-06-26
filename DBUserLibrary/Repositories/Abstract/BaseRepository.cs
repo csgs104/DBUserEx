@@ -1,10 +1,7 @@
-﻿using System;
+﻿namespace DBUserLibrary.Repositories.Abstract;
+
 using System.Data;
-
 using Microsoft.Data.SqlClient;
-
-
-namespace DBUserLibrary.Repositories.Abstract;
 
 public abstract class BaseRepository
 {
@@ -12,19 +9,16 @@ public abstract class BaseRepository
 
     public string Connection { get => _connection; }
 
-
     public BaseRepository(string cn)
 	{
         _connection = cn;
 	}
-
 
     protected SqlParameter[] SqlParameters(string cmd, Dictionary<string, object> prms)
     {
         return prms.Select(x => new SqlParameter(x.Key, x.Value)).ToArray() 
 	    ?? throw new NullReferenceException("Parameters Not Found.");
     }
-
 
     protected int Execute(string cmd, Dictionary<string, object> prms)
     {

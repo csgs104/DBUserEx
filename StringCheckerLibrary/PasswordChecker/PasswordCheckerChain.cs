@@ -1,15 +1,10 @@
-﻿using System;
+﻿namespace StringCheckerLibrary.PasswordChecker;
 
-using StringCheckerLibrary;
-using StringCheckerLibrary.PasswordChecker.Checkers;
-
-
-namespace StringCheckerLibrary.PasswordChecker;
+using Checkers;
 
 public class PasswordCheckerChain : StringCheckerChain
 {
     public PasswordCheckerChain() : base() { }
-
 
     public override IList<StringChecker> Checkers()
     {

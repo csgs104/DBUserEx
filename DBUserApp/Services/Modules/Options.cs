@@ -1,7 +1,4 @@
-﻿using System;
-
-
-namespace DBUserApp.Services.Modules;
+﻿namespace DBUserApp.Services.Modules;
 
 public static class Options
 {

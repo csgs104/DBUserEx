@@ -1,7 +1,4 @@
-﻿using System;
-
-
-namespace StringCheckerLibrary.EmailChecker;
+﻿namespace StringCheckerLibrary.EmailChecker;
 
 public class EmailCheckerConsole : StringCheckerConsole
 {

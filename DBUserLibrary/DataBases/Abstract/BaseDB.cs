@@ -1,9 +1,6 @@
-﻿using System;
+﻿namespace DBUserLibrary.DataBases.Abstract;
 
 using Microsoft.Data.SqlClient;
-
-
-namespace DBUserLibrary.DataBases.Abstract;
 
 public abstract class BaseDB : IDataBase
 {
@@ -11,12 +8,10 @@ public abstract class BaseDB : IDataBase
 
     public string Connection { get => _connection; }
 
-
     public BaseDB(string connection)
     {
         _connection = connection;
     }
-
 
     public abstract string CreateDataBase();
 

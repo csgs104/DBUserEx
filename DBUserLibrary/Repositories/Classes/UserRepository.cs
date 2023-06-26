@@ -1,21 +1,13 @@
-﻿using System;
+﻿namespace DBUserLibrary.Repositories.Classes;
+
 using System.Data;
-using System.Data.Common;
-
 using Microsoft.Data.SqlClient;
-
 using DBUserLibrary.Entities.Abstract;
 using DBUserLibrary.Entities.Classes;
 using DBUserLibrary.Repositories.Abstract;
-
 using StringCheckerLibrary;
 using StringCheckerLibrary.EmailChecker;
 using StringCheckerLibrary.PasswordChecker;
-
-using DBUserLibrary.Repositories.Exceptions;
-
-
-namespace DBUserLibrary.Repositories.Classes;
 
 public class UserRepository : EntityRepository, IUserRepository
 {
@@ -24,7 +16,6 @@ public class UserRepository : EntityRepository, IUserRepository
 
     public IStringChecker EmailChecker { get => _emailChecker; }
     public IStringChecker PasswordChecker { get => _passwordChecker; }
-
 
     public UserRepository(string cn, IStringChecker emailChecker, IStringChecker passwordChecker) 
 	: base(cn, "[Users].[dbo].[User]") 
@@ -36,7 +27,6 @@ public class UserRepository : EntityRepository, IUserRepository
     public UserRepository(string cn) 
 	: this(cn, new EmailCheckerHandler(), new PasswordCheckerHandler()) 
     { }
-
 
     private void EmailCheck(string email)
     {
@@ -50,20 +40,15 @@ public class UserRepository : EntityRepository, IUserRepository
         if (!ck.Item1) throw new Exception(ck.Item2);
     }
 
-
     public User GetById(int id, string password)
     {
         PasswordCheck(password);
-
         var ni = nameof(User.Id);
         var np = nameof(User.Password);
-
         var scmd = $@" SELECT * FROM {Table} WHERE [{ni}]=(@{ni}) AND [{np}]=(@{np})";
-
         var prms = new Dictionary<string, object>();
         prms.Add($"@{ni}", id);
         prms.Add($"@{np}", password);
-
         var entity = GetEntity(scmd, prms);
         return entity is User user? user : throw new Exception("Not an User.");
     }
@@ -72,16 +57,12 @@ public class UserRepository : EntityRepository, IUserRepository
     {
         EmailCheck(email);
         PasswordCheck(password);
-
         var ne = nameof(User.Email);
         var np = nameof(User.Password);
-
         var scmd = $@"SELECT * FROM {Table} WHERE [{ne}]=(@{ne}) AND [{np}]=(@{np})";
-
         var prms = new Dictionary<string, object>();
         prms.Add($"@{ne}", email);
         prms.Add($"@{np}", password);
-
         var entity = GetEntity(scmd, prms);
         return entity is User user ? user : throw new Exception("Not an User.");
     }
